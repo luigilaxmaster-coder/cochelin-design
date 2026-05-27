@@ -138,6 +138,12 @@ export default function HomePage() {
     }
   };
 
+  // Define these variables first before using them in functions
+  const categories = Array.from(new Set(projects.map(p => p.category).filter(Boolean)));
+  const filteredProjects = selectedCategory 
+    ? projects.filter(p => p.category === selectedCategory)
+    : projects;
+
   const nextProject = () => {
     if (filteredProjects.length === 0) return;
     setCurrentProjectIndex((prev) => (prev + 3) % filteredProjects.length);
@@ -161,11 +167,6 @@ export default function HomePage() {
   };
 
   const visibleProjects = getVisibleProjects();
-  
-  const categories = Array.from(new Set(projects.map(p => p.category).filter(Boolean)));
-  const filteredProjects = selectedCategory 
-    ? projects.filter(p => p.category === selectedCategory)
-    : projects;
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden font-paragraph text-foreground selection:bg-primary/30 selection:text-secondary">
