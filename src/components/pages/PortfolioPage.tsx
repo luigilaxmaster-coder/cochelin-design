@@ -75,17 +75,17 @@ export default function PortfolioPage() {
 
       {/* Filter Section */}
       <section className="py-8 bg-muted/30">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <AnimatedElement>
             <div className="flex flex-wrap justify-center gap-4">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-2 rounded-full font-medium transition-all hover:scale-105 ${
+                  className={`px-6 py-2 font-semibold text-sm uppercase tracking-wider transition-all duration-300 border ${
                     selectedCategory === category
-                      ? 'bg-primary text-primary-foreground shadow-lg'
-                      : 'bg-background text-foreground hover:bg-muted border border-border'
+                      ? 'bg-secondary text-white border-secondary'
+                      : 'bg-background text-foreground hover:bg-secondary/10 border-secondary'
                   }`}
                 >
                   {category === 'all' ? 'All Projects' : category}
@@ -98,12 +98,12 @@ export default function PortfolioPage() {
 
       {/* Projects Grid */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
             {isLoading ? null : filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
                 <AnimatedElement key={project._id} className={`delay-${(index % 6) * 100}`}>
-                  <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] bg-card cursor-pointer">
+                  <div className="group relative overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] bg-card border border-border/30 hover:border-primary/50 cursor-pointer">
                     <div className="relative h-80 overflow-hidden">
                       {project.mainImage && (
                         <Image 
@@ -148,7 +148,7 @@ export default function PortfolioPage() {
 
       {/* Categories Showcase */}
       <section className="py-20 bg-gradient-to-b from-background to-secondary/5">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <AnimatedElement>
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-secondary mb-4">
@@ -168,7 +168,7 @@ export default function PortfolioPage() {
               { title: 'Wine Cellars', count: projects.filter(p => p.category?.toLowerCase().includes('wine')).length }
             ].map((cat, index) => (
               <AnimatedElement key={index} className={`delay-${index * 100}`}>
-                <div className="bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] text-center">
+                <div className="bg-card border border-border/30 p-8 shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] text-center">
                   <h3 className="text-xl font-heading font-bold text-secondary mb-2">{cat.title}</h3>
                   <p className="text-3xl font-bold text-primary">{cat.count}</p>
                   <p className="text-foreground text-sm">Projects</p>

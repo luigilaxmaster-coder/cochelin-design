@@ -77,7 +77,7 @@ export default function ContactPage() {
 
       {/* Hero Section */}
       <section className="relative min-h-[400px] flex items-center justify-center bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: 'url(https://static.wixstatic.com/media/12d367_71ebdd7141d041e4be3d91d80d4578dd~mv2.png?id=1)' }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: 'url(https://static.wixstatic.com/media/307f6c_87fafc501e9a4b78979be7b294b613cc~mv2.png?originWidth=1152&originHeight=384)' }} />
         <div className="relative z-10 container mx-auto px-4 text-center">
           <AnimatedElement>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-secondary mb-6">
@@ -96,7 +96,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
             <AnimatedElement>
-              <div className="bg-card rounded-3xl shadow-xl p-8 md:p-10">
+              <div className="bg-card shadow-xl p-8 md:p-10 border border-border/30">
                 <h2 className="text-3xl font-heading font-bold text-secondary mb-6">
                   Send us a message
                 </h2>
@@ -188,8 +188,8 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4 p-6 bg-card rounded-2xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
+                <div className="space-y-6\">
+                  <div className="flex items-start gap-4 p-6 bg-card border border-border/30 shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
                     <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                       <Phone className="h-6 w-6 text-primary" />
                     </div>
@@ -201,7 +201,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-6 bg-card rounded-2xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
+                  <div className="flex items-start gap-4 p-6 bg-card border border-border/30 shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
                     <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                       <Mail className="h-6 w-6 text-primary" />
                     </div>
@@ -213,7 +213,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-6 bg-card rounded-2xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
+                  <div className="flex items-start gap-4 p-6 bg-card border border-border/30 shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
                     <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                       <MapPin className="h-6 w-6 text-primary" />
                     </div>
@@ -223,7 +223,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-6 bg-card rounded-2xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
+                  <div className="flex items-start gap-4 p-6 bg-card border border-border/30 shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
                     <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                       <Instagram className="h-6 w-6 text-primary" />
                     </div>
@@ -240,7 +240,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-6 bg-card rounded-2xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
+                  <div className="flex items-start gap-4 p-6 bg-card border border-border/30 shadow-md hover:shadow-lg transition-all hover:scale-[1.02]">
                     <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                       <Clock className="h-6 w-6 text-primary" />
                     </div>

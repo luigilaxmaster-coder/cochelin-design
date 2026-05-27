@@ -72,12 +72,12 @@ export default function ServicesPage() {
 
       {/* Services Grid */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 min-h-[400px]">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[400px]">
             {isLoading ? null : services.length > 0 ? (
               services.map((service, index) => (
                 <AnimatedElement key={service._id} className={`delay-${index * 100}`}>
-                  <div className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] bg-card">
+                  <div className="group relative overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] bg-card border border-border/30 hover:border-primary/50">
                     {service.serviceImage && (
                       <div className="relative h-80 overflow-hidden">
                         <Image 
@@ -96,16 +96,16 @@ export default function ServicesPage() {
                       </div>
                     )}
                     <div className="p-8">
-                      <p className="text-foreground text-lg mb-4">{service.shortDescription}</p>
+                      <p className="text-foreground text-base mb-4 leading-relaxed">{service.shortDescription}</p>
                       {service.detailedExplanation && (
-                        <p className="text-foreground/80 mb-6">{service.detailedExplanation}</p>
+                        <p className="text-foreground/70 text-sm mb-6 leading-relaxed">{service.detailedExplanation}</p>
                       )}
                       {service.callToActionUrl && (
                         <a 
                           href={service.callToActionUrl} 
-                          className="inline-flex items-center text-primary hover:text-primary/80 font-medium transition-colors"
+                          className="inline-flex items-center text-primary hover:text-primary/80 font-semibold text-sm uppercase tracking-wider transition-colors group/link"
                         >
-                          Learn More →
+                          Learn More <span className="ml-2 group-hover/link:translate-x-1 transition-transform">→</span>
                         </a>
                       )}
                     </div>
