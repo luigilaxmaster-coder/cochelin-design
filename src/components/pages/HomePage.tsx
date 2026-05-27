@@ -771,7 +771,35 @@ export default function HomePage() {
                     {/* Accent line on top */}
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/50 to-transparent rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     {/* Content */}
-
+                    <div className="relative p-8 h-full flex flex-col">
+                      {/* Step Number */}
+                      <div className="mb-6">
+                        <span className="text-5xl font-heading font-bold text-primary/20 group-hover:text-primary/40 transition-colors duration-300">
+                          {item.step}
+                        </span>
+                      </div>
+                      
+                      {/* Icon */}
+                      <div className="w-14 h-14 rounded-full bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-6 transition-all duration-300 transform group-hover:scale-110">
+                        <IconComponent className="w-7 h-7 text-primary group-hover:text-primary transition-colors duration-300" />
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-xl font-heading font-bold text-secondary mb-3 group-hover:text-primary transition-colors duration-300">
+                        {item.title}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-foreground/70 text-sm leading-relaxed font-light flex-grow group-hover:text-foreground/80 transition-colors duration-300">
+                        {item.description}
+                      </p>
+                      
+                      {/* Arrow indicator */}
+                      <div className="mt-6 flex items-center text-primary text-xs font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transform transition-all duration-300">
+                        <div className="w-1 h-1 rounded-full bg-primary mr-2" />
+                        Next Step
+                      </div>
+                    </div>
                   </div>
                 </FadeIn>
               );
