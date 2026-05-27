@@ -22,7 +22,8 @@ export default {
                 heading: ["cinzel", "serif"],
                 paragraph: ["noticia text", "serif"],
                 "noticia-text": ["noticia text", "serif"],
-                fraunces: ["fraunces", "serif"]
+                fraunces: ["fraunces", "serif"],
+                "pinyon-script": ["pinyon-script", "pinyon script", "cursive"]
             },
             colors: {
                 primary: '#BFAD9B',

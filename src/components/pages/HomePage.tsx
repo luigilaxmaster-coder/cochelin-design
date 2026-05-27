@@ -74,7 +74,7 @@ export default function HomePage() {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  
+
   const [formData, setFormData] = useState({
     senderName: '',
     emailAddress: '',
@@ -141,7 +141,7 @@ export default function HomePage() {
 
   // Define these variables first before using them in functions
   const categories = Array.from(new Set(projects.map(p => p.category).filter(Boolean)));
-  const filteredProjects = selectedCategory 
+  const filteredProjects = selectedCategory
     ? projects.filter(p => p.category === selectedCategory)
     : projects;
 
@@ -172,14 +172,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden font-paragraph text-foreground selection:bg-primary/30 selection:text-secondary">
       <Header />
-      
       {/* ===== HERO SECTION - ULTRA MINIMALIST ===== */}
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Background Image with Subtle Overlay */}
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://static.wixstatic.com/media/307f6c_34a68d8af10a4967a6677783bdaf50de~mv2.png?originWidth=1600&originHeight=896" 
-            alt="Luxury Interior Design Studio" 
+          <Image
+            src="https://static.wixstatic.com/media/307f6c_34a68d8af10a4967a6677783bdaf50de~mv2.png?originWidth=1600&originHeight=896"
+            alt="Luxury Interior Design Studio"
             className="w-full h-full object-cover"
           />
           {/* Refined Overlay - More Subtle */}
@@ -193,29 +192,27 @@ export default function HomePage() {
               Design Excellence
             </p>
           </FadeIn>
-          
+
           <FadeIn delay={300} direction="up">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-heading font-bold text-white mb-8 leading-tight tracking-tight">
-              Bespoke Design & Architecture
-            </h1>
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-heading font-bold text-white mb-8 leading-tight tracking-tight">Custom made</h1>
           </FadeIn>
-          
+
           <FadeIn delay={500} direction="up">
             <p className="text-lg md:text-xl text-white/70 mb-12 leading-relaxed max-w-3xl mx-auto font-light">
               Custom furniture, interior design, and architectural solutions for refined residential and commercial spaces.
             </p>
           </FadeIn>
-          
+
           <FadeIn delay={700} direction="up" className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-primary text-secondary hover:bg-primary/90 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
               onClick={() => navigate('/contact')}
             >
               Start Your Project
             </Button>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="outline"
               className="border border-white text-white hover:bg-white/10 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
               onClick={() => document.getElementById('featured-projects')?.scrollIntoView({ behavior: 'smooth' })}
@@ -225,7 +222,6 @@ export default function HomePage() {
           </FadeIn>
         </div>
       </section>
-
       {/* ===== FEATURED IN SECTION - PRESS & PUBLICATIONS ===== */}
       <section className="py-32 bg-background relative">
         <div className="container mx-auto px-4 max-w-[120rem]">
@@ -240,7 +236,7 @@ export default function HomePage() {
 
           {/* Press Carousel */}
           <FadeIn direction="up" delay={100}>
-            <PressCarousel 
+            <PressCarousel
               items={[
                 {
                   _id: '1',
@@ -314,8 +310,8 @@ export default function HomePage() {
 
           {/* Explore Press Button */}
           <FadeIn direction="up" delay={200} className="text-center mt-16">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-secondary text-white hover:bg-secondary/90 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
               onClick={() => navigate('/services')}
             >
@@ -324,7 +320,6 @@ export default function HomePage() {
           </FadeIn>
         </div>
       </section>
-
       {/* ===== EXPERTISE SECTION - ASYMMETRIC LAYOUT ===== */}
       <section className="py-32 bg-white relative">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -333,32 +328,32 @@ export default function HomePage() {
             <FadeIn direction="left" className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <div className="relative h-80 overflow-hidden bg-muted">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_a296e06da2a94749bf69322fa404b97e~mv2.png?originWidth=576&originHeight=384" 
-                    alt="Interior Design" 
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_a296e06da2a94749bf69322fa404b97e~mv2.png?originWidth=576&originHeight=384"
+                    alt="Interior Design"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="relative h-64 overflow-hidden bg-muted">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_2786f49002d84328a1a60b9784d32c4c~mv2.png?originWidth=576&originHeight=384" 
-                    alt="Wine Cellars" 
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_2786f49002d84328a1a60b9784d32c4c~mv2.png?originWidth=576&originHeight=384"
+                    alt="Wine Cellars"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
               <div className="space-y-4 pt-8">
                 <div className="relative h-64 overflow-hidden bg-muted">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_1f7e13b5f498423891adc7ad8f783c41~mv2.png?originWidth=576&originHeight=384" 
-                    alt="Residential Furniture" 
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_1f7e13b5f498423891adc7ad8f783c41~mv2.png?originWidth=576&originHeight=384"
+                    alt="Residential Furniture"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="relative h-80 overflow-hidden bg-muted">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_fb01f55513264bd9b7bcf45929d91409~mv2.png?originWidth=576&originHeight=384" 
-                    alt="Commercial Furniture" 
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_fb01f55513264bd9b7bcf45929d91409~mv2.png?originWidth=576&originHeight=384"
+                    alt="Commercial Furniture"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -401,7 +396,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* ===== ABOUT SECTION - REFINED ===== */}
       <section className="py-32 bg-secondary relative overflow-hidden">
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
@@ -418,7 +412,7 @@ export default function HomePage() {
                 <p className="text-lg text-white/70 mb-10 leading-relaxed font-light italic border-l-2 border-primary pl-6">
                   "Listening to what people desire, being creative and dedicated with all my expertise, always brings greater results than the original expectation."
                 </p>
-                <Button 
+                <Button
                   className="bg-primary text-secondary hover:bg-white hover:text-secondary rounded-none px-10 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
                   onClick={() => navigate('/about')}
                 >
@@ -426,7 +420,7 @@ export default function HomePage() {
                 </Button>
               </div>
             </FadeIn>
-            
+
             <FadeIn direction="left" delay={200}>
               <div className="relative">
                 <Image
@@ -443,7 +437,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* ===== FEATURED PROJECTS SECTION - CAROUSEL ===== */}
       <section id="featured-projects" className="py-32 bg-background relative">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -506,15 +499,15 @@ export default function HomePage() {
                       <FadeIn key={`${project._id}-carousel-${index}`} delay={index * 100} direction="up">
                         <Link to={`/projects/${project._id}`} className="group relative h-96 overflow-hidden block rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-500">
                           {project.mainImage ? (
-                            <Image 
-                              src={project.mainImage} 
-                              alt={project.projectTitle || 'Project'} 
+                            <Image
+                              src={project.mainImage}
+                              alt={project.projectTitle || 'Project'}
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                             />
                           ) : (
                             <div className="w-full h-full bg-muted flex items-center justify-center" />
                           )}
-                          
+
                           {/* Hover Overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-secondary/95 via-secondary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
                             <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -587,7 +580,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* ===== WHY WORK WITH US SECTION ===== */}
       <section className="py-32 bg-secondary relative overflow-hidden">
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
@@ -636,7 +628,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* ===== PROCESS SECTION - DYNAMIC & AESTHETIC ===== */}
       <section className="py-32 bg-gradient-to-b from-background via-primary/5 to-background relative overflow-hidden">
         {/* Decorative background elements */}
@@ -659,39 +650,39 @@ export default function HomePage() {
           {/* Process Steps - Enhanced Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {[
-              { 
-                step: '01', 
-                title: 'Consultation', 
+              {
+                step: '01',
+                title: 'Consultation',
                 description: 'We listen to your vision, understand your needs, and explore possibilities for your project.',
                 icon: MessageSquare
               },
-              { 
-                step: '02', 
-                title: 'Concept', 
+              {
+                step: '02',
+                title: 'Concept',
                 description: 'Our team develops initial concepts and creative directions tailored to your requirements.',
                 icon: Lightbulb
               },
-              { 
-                step: '03', 
-                title: 'Design', 
+              {
+                step: '03',
+                title: 'Design',
                 description: 'Detailed design development with technical drawings, materials selection, and refinements.',
                 icon: Pencil
               },
-              { 
-                step: '04', 
-                title: 'Fabrication', 
+              {
+                step: '04',
+                title: 'Fabrication',
                 description: 'Expert craftsmanship brings your design to life with precision and quality materials.',
                 icon: Hammer
               },
-              { 
-                step: '05', 
-                title: 'Installation', 
+              {
+                step: '05',
+                title: 'Installation',
                 description: 'Professional installation ensures perfect execution and seamless integration into your space.',
                 icon: Wrench
               },
-              { 
-                step: '06', 
-                title: 'Delivery', 
+              {
+                step: '06',
+                title: 'Delivery',
                 description: 'Final touches and handover, ensuring complete satisfaction with your new space.',
                 icon: Package
               }
@@ -702,10 +693,10 @@ export default function HomePage() {
                 <div className="group relative h-full">
                   {/* Card Background with gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white to-white/50 border border-border/40 group-hover:border-primary/60 transition-all duration-500 rounded-lg shadow-sm group-hover:shadow-xl" />
-                  
+
                   {/* Accent line on top */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/50 to-transparent rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+
                   {/* Content */}
                   <div className="relative p-8 h-full flex flex-col">
                     {/* Step Number with background - Enhanced visibility */}
@@ -720,17 +711,17 @@ export default function HomePage() {
                         <IconComponent className="w-7 h-7 text-primary/70 group-hover:text-primary transition-colors duration-300" />
                       </div>
                     </div>
-                    
+
                     {/* Title */}
                     <h3 className="text-xl font-heading font-bold text-secondary mb-3 group-hover:text-primary transition-colors duration-300">
                       {item.title}
                     </h3>
-                    
+
                     {/* Description */}
                     <p className="text-foreground/60 text-sm leading-relaxed font-light flex-grow">
                       {item.description}
                     </p>
-                    
+
                     {/* Arrow indicator */}
                     <div className="mt-6 flex items-center text-primary text-xs font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300">
                       <ArrowRight className="w-3 h-3 ml-0 group-hover:ml-2 transition-all duration-300" />
@@ -747,7 +738,7 @@ export default function HomePage() {
             <div className="relative">
               {/* Horizontal timeline line - visible on desktop */}
               <div className="hidden lg:block absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
-              
+
               {/* Timeline dots and labels */}
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 pt-8">
                 {[
@@ -780,8 +771,8 @@ export default function HomePage() {
             <p className="text-foreground/70 text-lg mb-8 font-light">
               Ready to start your project? Let's discuss your vision and bring it to life.
             </p>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-secondary text-white hover:bg-secondary/90 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
               onClick={() => navigate('/contact')}
             >
@@ -790,18 +781,17 @@ export default function HomePage() {
           </FadeIn>
         </div>
       </section>
-
       {/* ===== CONTACT SECTION - REFINED ===== */}
       <section className="py-32 bg-muted relative">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="bg-white flex flex-col lg:flex-row overflow-hidden border border-border/30">
-            
+
             {/* Left Side - Form */}
             <div className="w-full lg:w-1/2 bg-secondary p-10 md:p-16 text-white relative overflow-hidden">
               <FadeIn direction="right" className="relative z-10">
                 <h2 className="text-4xl md:text-5xl font-heading font-bold mb-3">Get Started</h2>
                 <p className="text-primary/90 text-lg mb-10 font-light">Let's bring your vision to life</p>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
@@ -826,7 +816,7 @@ export default function HomePage() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-xs uppercase tracking-wider text-white/60 font-semibold">Phone</label>
@@ -868,8 +858,8 @@ export default function HomePage() {
                     />
                   </div>
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     disabled={isSubmitting}
                     className="bg-primary text-secondary hover:bg-white hover:text-secondary rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300 mt-6 w-full md:w-auto"
                   >
@@ -884,7 +874,7 @@ export default function HomePage() {
             <div className="w-full lg:w-1/2 bg-white p-10 md:p-16 flex flex-col justify-center">
               <FadeIn direction="left" delay={200}>
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-secondary mb-12">Contact Info</h2>
-                
+
                 <div className="space-y-10">
                   <div className="flex items-start space-x-4 group">
                     <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0">
@@ -937,7 +927,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
