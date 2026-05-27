@@ -1,7 +1,7 @@
 // Premium Homepage - Ultra Professional & Minimalist Design
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Loader2, MapPin, Phone, Mail, Instagram, ArrowRight, Check } from 'lucide-react';
+import { Loader2, MapPin, Phone, Mail, Instagram, ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -139,20 +139,23 @@ export default function HomePage() {
   };
 
   const nextProject = () => {
-    if (projects.length === 0) return;
-    setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
+    if (filteredProjects.length === 0) return;
+    setCurrentProjectIndex((prev) => (prev + 3) % filteredProjects.length);
   };
 
   const prevProject = () => {
-    if (projects.length === 0) return;
-    setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    if (filteredProjects.length === 0) return;
+    setCurrentProjectIndex((prev) => {
+      const newIndex = prev - 3;
+      return newIndex < 0 ? Math.max(0, filteredProjects.length - 3) : newIndex;
+    });
   };
 
   const getVisibleProjects = () => {
-    if (projects.length === 0) return [];
+    if (filteredProjects.length === 0) return [];
     const visible = [];
-    for (let i = 0; i < Math.min(4, projects.length); i++) {
-      visible.push(projects[(currentProjectIndex + i) % projects.length]);
+    for (let i = 0; i < Math.min(3, filteredProjects.length); i++) {
+      visible.push(filteredProjects[(currentProjectIndex + i) % filteredProjects.length]);
     }
     return visible;
   };
@@ -403,7 +406,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== FEATURED PROJECTS SECTION ===== */}
+      {/* ===== FEATURED PROJECTS SECTION - CAROUSEL ===== */}
       <section id="featured-projects" className="py-32 bg-background relative">
         <div className="container mx-auto px-4 max-w-7xl">
           <FadeIn direction="up" className="text-center mb-24">
@@ -419,7 +422,10 @@ export default function HomePage() {
           {categories.length > 0 && (
             <FadeIn direction="up" delay={100} className="flex flex-wrap justify-center gap-3 mb-16">
               <button
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => {
+                  setSelectedCategory(null);
+                  setCurrentProjectIndex(0);
+                }}
                 className={`px-6 py-2 text-xs font-semibold tracking-wider uppercase transition-all duration-300 border ${
                   selectedCategory === null
                     ? 'bg-secondary text-white border-secondary'
@@ -431,7 +437,10 @@ export default function HomePage() {
               {categories.map((cat) => (
                 <button
                   key={cat}
-                  onClick={() => setSelectedCategory(cat)}
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    setCurrentProjectIndex(0);
+                  }}
                   className={`px-6 py-2 text-xs font-semibold tracking-wider uppercase transition-all duration-300 border ${
                     selectedCategory === cat
                       ? 'bg-secondary text-white border-secondary'
@@ -444,40 +453,96 @@ export default function HomePage() {
             </FadeIn>
           )}
 
-          {/* Projects Grid */}
-          <div className="relative min-h-[400px]">
+          {/* Projects Carousel */}
+          <div className="relative">
             {isLoadingProjects ? (
-              <div className="flex justify-center py-20">
+              <div className="flex justify-center py-32">
                 <Loader2 className="w-10 h-10 animate-spin text-primary" />
               </div>
             ) : filteredProjects.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {filteredProjects.slice(0, 8).map((project, index) => (
-                  <FadeIn key={`${project._id}-${index}`} delay={index * 80} direction="up">
-                    <Link to={`/projects/${project._id}`} className="group relative h-80 overflow-hidden block">
-                      {project.mainImage ? (
-                        <Image 
-                          src={project.mainImage} 
-                          alt={project.projectTitle || 'Project'} 
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-muted flex items-center justify-center" />
-                      )}
-                      
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/85 transition-colors duration-500 flex flex-col justify-end p-6">
-                        <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                          <h3 className="text-white font-heading font-bold text-lg mb-2">{project.projectTitle}</h3>
-                          <p className="text-primary text-xs uppercase tracking-wider font-semibold">{project.category}</p>
-                        </div>
+              <div className="relative">
+                {/* Main Carousel Container */}
+                <div className="relative overflow-hidden">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    {visibleProjects.map((project, index) => (
+                      <FadeIn key={`${project._id}-carousel-${index}`} delay={index * 100} direction="up">
+                        <Link to={`/projects/${project._id}`} className="group relative h-96 overflow-hidden block rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-500">
+                          {project.mainImage ? (
+                            <Image 
+                              src={project.mainImage} 
+                              alt={project.projectTitle || 'Project'} 
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-muted flex items-center justify-center" />
+                          )}
+                          
+                          {/* Hover Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-secondary/95 via-secondary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                              <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-2">{project.category}</p>
+                              <h3 className="text-white font-heading font-bold text-2xl mb-3">{project.projectTitle}</h3>
+                              <p className="text-white/80 text-sm font-light line-clamp-2">{project.detailedDescription}</p>
+                              <div className="mt-4 flex items-center text-primary text-xs font-semibold uppercase tracking-wider">
+                                View Project <ArrowRight className="w-3 h-3 ml-2" />
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      </FadeIn>
+                    ))}
+                  </div>
+
+                  {/* Navigation Buttons */}
+                  {filteredProjects.length > 3 && (
+                    <div className="flex items-center justify-between mt-12">
+                      <div className="flex gap-4">
+                        <button
+                          onClick={prevProject}
+                          className="w-12 h-12 rounded-full border border-secondary text-secondary hover:bg-secondary hover:text-white transition-all duration-300 flex items-center justify-center group"
+                          aria-label="Previous projects"
+                        >
+                          <ChevronLeft className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                        </button>
+                        <button
+                          onClick={nextProject}
+                          className="w-12 h-12 rounded-full border border-secondary text-secondary hover:bg-secondary hover:text-white transition-all duration-300 flex items-center justify-center group"
+                          aria-label="Next projects"
+                        >
+                          <ChevronRight className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                        </button>
                       </div>
-                    </Link>
-                  </FadeIn>
-                ))}
+
+                      {/* Carousel Indicators */}
+                      <div className="flex gap-2">
+                        {Array.from({ length: Math.ceil(filteredProjects.length / 3) }).map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setCurrentProjectIndex(idx * 3)}
+                            className={`h-2 transition-all duration-300 rounded-full ${
+                              idx === Math.floor(currentProjectIndex / 3)
+                                ? 'bg-secondary w-8'
+                                : 'bg-secondary/30 w-2 hover:bg-secondary/60'
+                            }`}
+                            aria-label={`Go to carousel page ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Project Counter */}
+                      <div className="text-sm font-semibold text-secondary/60">
+                        <span className="text-secondary">{currentProjectIndex + 1}</span>
+                        {' - '}
+                        <span className="text-secondary">{Math.min(currentProjectIndex + 3, filteredProjects.length)}</span>
+                        {' of '}
+                        <span>{filteredProjects.length}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             ) : (
-              <div className="text-center py-20 text-muted-foreground">
+              <div className="text-center py-32 text-muted-foreground">
                 No projects in this category yet.
               </div>
             )}
