@@ -600,42 +600,152 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== PROCESS SECTION - CLEAN & MINIMAL ===== */}
-      <section className="py-32 bg-background relative">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <FadeIn direction="up" className="text-center mb-24">
+      {/* ===== PROCESS SECTION - DYNAMIC & AESTHETIC ===== */}
+      <section className="py-32 bg-gradient-to-b from-background via-primary/5 to-background relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <FadeIn direction="up" className="text-center mb-20">
+            <p className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-4">Our Methodology</p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-secondary mb-6">
               Our Process
             </h2>
-            <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-light">
-              A structured approach to delivering exceptional results
+            <p className="text-foreground/60 text-lg max-w-3xl mx-auto font-light">
+              A structured approach to delivering exceptional results. From initial consultation to final delivery, we guide you through every step with expertise and precision.
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+          {/* Process Steps - Enhanced Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {[
-              { step: '01', title: 'Consultation' },
-              { step: '02', title: 'Concept' },
-              { step: '03', title: 'Design' },
-              { step: '04', title: 'Fabrication' },
-              { step: '05', title: 'Installation' },
-              { step: '06', title: 'Delivery' }
+              { 
+                step: '01', 
+                title: 'Consultation', 
+                description: 'We listen to your vision, understand your needs, and explore possibilities for your project.',
+                icon: '💬'
+              },
+              { 
+                step: '02', 
+                title: 'Concept', 
+                description: 'Our team develops initial concepts and creative directions tailored to your requirements.',
+                icon: '✨'
+              },
+              { 
+                step: '03', 
+                title: 'Design', 
+                description: 'Detailed design development with technical drawings, materials selection, and refinements.',
+                icon: '🎨'
+              },
+              { 
+                step: '04', 
+                title: 'Fabrication', 
+                description: 'Expert craftsmanship brings your design to life with precision and quality materials.',
+                icon: '🔨'
+              },
+              { 
+                step: '05', 
+                title: 'Installation', 
+                description: 'Professional installation ensures perfect execution and seamless integration into your space.',
+                icon: '📐'
+              },
+              { 
+                step: '06', 
+                title: 'Delivery', 
+                description: 'Final touches and handover, ensuring complete satisfaction with your new space.',
+                icon: '🎁'
+              }
             ].map((item, index) => (
               <FadeIn key={index} delay={index * 80} direction="up">
-                <div className="relative">
-                  {/* Connector line */}
-                  {index < 5 && (
-                    <div className="hidden lg:block absolute top-12 -right-2 w-4 h-0.5 bg-primary/30" />
-                  )}
+                <div className="group relative h-full">
+                  {/* Card Background with gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white to-white/50 border border-border/40 group-hover:border-primary/60 transition-all duration-500 rounded-lg shadow-sm group-hover:shadow-xl" />
                   
-                  <div className="bg-white border border-border/30 hover:border-primary/40 transition-all duration-300 p-6 h-full flex flex-col items-center text-center group">
-                    <span className="text-3xl font-heading font-bold text-primary/20 mb-3">{item.step}</span>
-                    <h3 className="text-sm font-heading font-bold text-secondary group-hover:text-primary transition-colors duration-300">{item.title}</h3>
+                  {/* Accent line on top */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/50 to-transparent rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Content */}
+                  <div className="relative p-8 h-full flex flex-col">
+                    {/* Step Number with background */}
+                    <div className="mb-6 flex items-center gap-4">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-primary/10 rounded-full blur-md group-hover:bg-primary/20 transition-all duration-300" />
+                        <span className="relative text-4xl font-heading font-bold text-primary/40 group-hover:text-primary/60 transition-colors duration-300">
+                          {item.step}
+                        </span>
+                      </div>
+                      <div className="text-3xl">{item.icon}</div>
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-xl font-heading font-bold text-secondary mb-3 group-hover:text-primary transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-foreground/60 text-sm leading-relaxed font-light flex-grow">
+                      {item.description}
+                    </p>
+                    
+                    {/* Arrow indicator */}
+                    <div className="mt-6 flex items-center text-primary text-xs font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300">
+                      <ArrowRight className="w-3 h-3 ml-0 group-hover:ml-2 transition-all duration-300" />
+                    </div>
                   </div>
                 </div>
               </FadeIn>
             ))}
           </div>
+
+          {/* Timeline Visualization */}
+          <FadeIn direction="up" delay={500} className="mt-20 pt-16 border-t border-border/20">
+            <div className="relative">
+              {/* Horizontal timeline line - visible on desktop */}
+              <div className="hidden lg:block absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
+              
+              {/* Timeline dots and labels */}
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 pt-8">
+                {[
+                  { number: '01', label: 'Consultation' },
+                  { number: '02', label: 'Concept' },
+                  { number: '03', label: 'Design' },
+                  { number: '04', label: 'Fabrication' },
+                  { number: '05', label: 'Installation' },
+                  { number: '06', label: 'Delivery' }
+                ].map((item, index) => (
+                  <FadeIn key={index} delay={600 + index * 50} direction="up">
+                    <div className="flex flex-col items-center group">
+                      {/* Dot */}
+                      <div className="w-12 h-12 rounded-full bg-white border-2 border-primary/40 group-hover:border-primary group-hover:bg-primary/10 flex items-center justify-center mb-3 transition-all duration-300 shadow-sm group-hover:shadow-md">
+                        <span className="text-xs font-heading font-bold text-primary">{item.number}</span>
+                      </div>
+                      {/* Label */}
+                      <p className="text-xs font-semibold text-secondary/60 group-hover:text-primary text-center transition-colors duration-300">
+                        {item.label}
+                      </p>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* CTA Section */}
+          <FadeIn direction="up" delay={700} className="mt-20 text-center">
+            <p className="text-foreground/70 text-lg mb-8 font-light">
+              Ready to start your project? Let's discuss your vision and bring it to life.
+            </p>
+            <Button 
+              size="lg" 
+              className="bg-secondary text-white hover:bg-secondary/90 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
+              onClick={() => navigate('/contact')}
+            >
+              Begin Your Journey
+            </Button>
+          </FadeIn>
         </div>
       </section>
 
