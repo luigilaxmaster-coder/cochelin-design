@@ -19,8 +19,10 @@ export default {
                 '9xl': ['6rem', { lineHeight: '1', letterSpacing: '-0.01em', fontWeight: 'bold' }],
             },
             fontFamily: {
-                heading: "Roboto",
-                paragraph: "Roboto"
+                heading: ["fraunces", "serif"],
+                paragraph: ["noticia text", "serif"],
+                "noticia-text": ["noticia text", "serif"],
+                fraunces: ["fraunces", "serif"]
             },
             colors: {
                 primary: '#BFAD9B',

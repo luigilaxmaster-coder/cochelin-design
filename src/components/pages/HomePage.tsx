@@ -177,7 +177,6 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden font-paragraph text-foreground selection:bg-primary/30 selection:text-secondary">
       <Header />
-
       {/* HERO SECTION */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
         {/* Background Image with Parallax feel */}
@@ -198,7 +197,7 @@ export default function HomePage() {
           </FadeIn>
           
           <FadeIn delay={300} direction="up">
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-heading font-bold text-primary mb-8 drop-shadow-lg" style={{ fontFamily: 'cursive' }}>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-heading font-bold text-primary mb-8">
               Custom made
             </h1>
           </FadeIn>
@@ -223,7 +222,6 @@ export default function HomePage() {
           </FadeIn>
         </div>
       </section>
-
       {/* SERVICES SECTION */}
       <section className="py-24 bg-background relative">
         {/* Decorative background band matching screenshot */}
@@ -285,7 +283,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* WHAT WE DO SECTION */}
       <section className="py-24 bg-muted/30 relative">
         <div className="absolute top-0 left-0 right-0 h-64 bg-primary/10 -z-10" />
@@ -323,7 +320,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* ABOUT US SECTION */}
       <section className="py-24 bg-secondary relative overflow-hidden">
         {/* Decorative background elements */}
@@ -359,18 +355,19 @@ export default function HomePage() {
                 {/* Offset background square matching screenshot style */}
                 <div className="absolute inset-0 bg-primary/20 translate-x-4 translate-y-4 md:translate-x-8 md:translate-y-8 -z-10" />
                 <div className="relative shadow-2xl">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_17a1e5ead961477b82d1648e68e05a76~mv2.png?originWidth=768&originHeight=960" 
-                    alt="Claire Cochelin" 
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_2b11b3f0935d456e8507ee0d27316bdb~mv2.png"
                     className="w-full h-auto object-cover aspect-[4/5]"
-                  />
+                    originWidth={1086}
+                    originHeight={1448}
+                    focalPointX={42.21915285451197}
+                    focalPointY={20.33839779005525} />
                 </div>
               </div>
             </FadeIn>
           </div>
         </div>
       </section>
-
       {/* FEATURED PROJECTS SECTION */}
       <section className="py-24 bg-background relative">
         <div className="absolute top-0 left-0 right-0 h-64 bg-primary/10 -z-10" />
@@ -441,7 +438,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* CONTACT SECTION */}
       <section className="py-24 bg-muted relative">
         <div className="container mx-auto px-4">
@@ -588,7 +584,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
