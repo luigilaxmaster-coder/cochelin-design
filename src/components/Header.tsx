@@ -1,7 +1,7 @@
+import { Button } from '@/components/ui/button';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <span className="text-2xl font-heading font-bold text-primary tracking-tight">
-              ccprojectdesign.com
+              CCprojectdesign
             </span>
           </Link>
 
