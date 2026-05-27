@@ -40,7 +40,7 @@ export default function PortfolioPage() {
 
   const loadProjects = async () => {
     try {
-      const result = await BaseCrudService.getAll<ProjectPortfolio>('projectportfolio');
+      const result = await BaseCrudService.getAll<ProjectPortfolio>('projectportfolio', undefined, { limit: 500 });
       setProjects(result.items);
     } catch (error) {
       console.error('Error loading projects:', error);
@@ -162,10 +162,10 @@ export default function PortfolioPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Interior Design', count: projects.filter(p => p.category?.toLowerCase().includes('interior')).length },
-              { title: 'Residential Furniture', count: projects.filter(p => p.category?.toLowerCase().includes('residential')).length },
-              { title: 'Commercial Furniture', count: projects.filter(p => p.category?.toLowerCase().includes('commercial')).length },
-              { title: 'Wine Cellars', count: projects.filter(p => p.category?.toLowerCase().includes('wine')).length }
+              { title: 'Diseño de Interiores', count: projects.filter(p => p.category === 'Diseño de Interiores').length },
+              { title: 'Mobiliario Residencial', count: projects.filter(p => p.category === 'Mobiliario Residencial').length },
+              { title: 'Mobiliario Comercial', count: projects.filter(p => p.category === 'Mobiliario Comercial').length },
+              { title: 'Cavas y Humidores', count: projects.filter(p => p.category === 'Cavas y Humidores').length }
             ].map((cat, index) => (
               <AnimatedElement key={index} className={`delay-${index * 100}`}>
                 <div className="bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] text-center">

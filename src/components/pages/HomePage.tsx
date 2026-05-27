@@ -101,7 +101,7 @@ export default function HomePage() {
 
   const loadProjects = async () => {
     try {
-      const result = await BaseCrudService.getAll<ProjectPortfolio>('projectportfolio');
+      const result = await BaseCrudService.getAll<ProjectPortfolio>('projectportfolio', undefined, { limit: 500 });
       setProjects(result.items || []);
     } catch (error) {
       console.error('Error loading projects:', error);
@@ -177,8 +177,8 @@ export default function HomePage() {
         {/* Background Image with Subtle Overlay */}
         <div className="absolute inset-0 z-0">
           <Image 
-            src="https://static.wixstatic.com/media/307f6c_34a68d8af10a4967a6677783bdaf50de~mv2.png?originWidth=1600&originHeight=896" 
-            alt="Luxury Interior Design Studio" 
+            src="https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7572-scaled.jpg"
+            alt="CC Project Design - Interior Design Studio"
             className="w-full h-full object-cover"
           />
           {/* Refined Overlay - More Subtle */}
@@ -245,7 +245,7 @@ export default function HomePage() {
                   projectName: 'Caribbean Luxury Residence',
                   year: 2024,
                   type: 'Featured project',
-                  image: 'https://static.wixstatic.com/media/307f6c_a7fd143cf2984f93854c12129409eb8e~mv2.png?originWidth=576&originHeight=384',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7572-scaled.jpg',
                   description: 'Our signature Caribbean residence project was featured in Architecture Digest\'s annual design excellence issue, showcasing innovative tropical architecture and sustainable design principles.',
                   externalLink: '#'
                 },
@@ -256,7 +256,7 @@ export default function HomePage() {
                   projectName: 'Modern Minimalist Office',
                   year: 2024,
                   type: 'Editorial mention',
-                  image: 'https://static.wixstatic.com/media/307f6c_77ce03f547a249118344a4fdd6c4b539~mv2.png?originWidth=576&originHeight=384',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7505-scaled.jpg',
                   description: 'Featured in the "Workspace Evolution" editorial series, highlighting how contemporary office design enhances productivity and employee wellbeing.',
                   externalLink: '#'
                 },
@@ -267,7 +267,7 @@ export default function HomePage() {
                   projectName: 'Bespoke Furniture Collection',
                   year: 2023,
                   type: 'Published work',
-                  image: 'https://static.wixstatic.com/media/307f6c_0363eb106eec4091a5b126df8f59d290~mv2.png?originWidth=576&originHeight=384',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7510-scaled.jpg',
                   description: 'Our custom furniture line was showcased in the publication\'s premium collection issue, demonstrating craftsmanship and innovative design.',
                   externalLink: '#'
                 },
@@ -278,7 +278,7 @@ export default function HomePage() {
                   projectName: 'Sustainable Urban Development',
                   year: 2023,
                   type: 'Architecture feature',
-                  image: 'https://static.wixstatic.com/media/307f6c_24f5151f959e43d7aca3b33b5e9e8650~mv2.png?originWidth=576&originHeight=384',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7503-scaled.jpg',
                   description: 'In-depth analysis of our sustainable urban development project, exploring green building practices and community-centered design.',
                   externalLink: '#'
                 },
@@ -289,7 +289,7 @@ export default function HomePage() {
                   projectName: 'Tropical Resort Redesign',
                   year: 2023,
                   type: 'Featured project',
-                  image: 'https://static.wixstatic.com/media/307f6c_cb5b5a2f54c7405684c7e53838b29d6e~mv2.png?originWidth=576&originHeight=384',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7514-scaled.jpg',
                   description: 'Comprehensive feature on our tropical resort redesign, celebrating the fusion of local culture with contemporary design aesthetics.',
                   externalLink: '#'
                 },
@@ -300,7 +300,7 @@ export default function HomePage() {
                   projectName: 'Artisan Furniture Series',
                   year: 2022,
                   type: 'Editorial mention',
-                  image: 'https://static.wixstatic.com/media/307f6c_52c543dfba7f44e2946974969703cbbf~mv2.png?originWidth=576&originHeight=384',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7517-scaled.jpg',
                   description: 'Editorial spotlight on our artisan furniture series, highlighting the intersection of traditional craftsmanship and modern design.',
                   externalLink: '#'
                 }
@@ -328,32 +328,32 @@ export default function HomePage() {
             <FadeIn direction="left" className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <div className="relative h-80 overflow-hidden bg-muted">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_a296e06da2a94749bf69322fa404b97e~mv2.png?originWidth=576&originHeight=384" 
-                    alt="Interior Design" 
+                  <Image
+                    src="https://ccprojectdesign.com/wp-content/uploads/2021/07/DSC_0127-scaled.jpg"
+                    alt="Diseño de Interiores"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="relative h-64 overflow-hidden bg-muted">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_2786f49002d84328a1a60b9784d32c4c~mv2.png?originWidth=576&originHeight=384" 
-                    alt="Wine Cellars" 
+                  <Image
+                    src="https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_4891-scaled.jpg"
+                    alt="Cavas y Humidores"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
               <div className="space-y-4 pt-8">
                 <div className="relative h-64 overflow-hidden bg-muted">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_1f7e13b5f498423891adc7ad8f783c41~mv2.png?originWidth=576&originHeight=384" 
-                    alt="Residential Furniture" 
+                  <Image
+                    src="https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7501-scaled.jpg"
+                    alt="Mobiliario Residencial"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="relative h-80 overflow-hidden bg-muted">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_fb01f55513264bd9b7bcf45929d91409~mv2.png?originWidth=576&originHeight=384" 
-                    alt="Commercial Furniture" 
+                  <Image
+                    src="https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7507-scaled.jpg"
+                    alt="Mobiliario Comercial"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
