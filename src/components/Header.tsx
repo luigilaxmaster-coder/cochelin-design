@@ -25,9 +25,13 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 flex-shrink-0">
-            <span className="text-xl md:text-2xl font-heading font-bold tracking-tight text-secondary">
-              CCprojectdesign
-            </span>
+            <Image
+              src="https://static.wixstatic.com/media/307f6c_c46a4793d21840d28ff9ac5d5d256299~mv2.png"
+              alt="CC Project Design Logo"
+              width={48}
+              height={48}
+              className="h-12 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
