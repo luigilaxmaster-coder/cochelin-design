@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Image } from '@/components/ui/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PressCarousel, { PressItem } from '@/components/PressCarousel';
 import { BaseCrudService } from '@/integrations';
 import { Services, ProjectPortfolio } from '@/entities';
 
@@ -225,66 +226,102 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== SERVICES SECTION - CLEAN GRID ===== */}
+      {/* ===== FEATURED IN SECTION - PRESS & PUBLICATIONS ===== */}
       <section className="py-32 bg-background relative">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-4 max-w-[120rem]">
           <FadeIn direction="up" className="text-center mb-24">
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-secondary mb-6">
-              Our Services
+              Featured In
             </h2>
             <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-light">
-              Comprehensive design and construction solutions tailored to your vision
+              Selected publications, editorial mentions, and architectural features showcasing our completed projects
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {isLoadingServices ? (
-              <div className="col-span-full flex justify-center py-20">
-                <Loader2 className="w-10 h-10 animate-spin text-primary" />
-              </div>
-            ) : services.length > 0 ? (
-              services.map((service, index) => (
-                <FadeIn key={service._id} delay={index * 100} direction="up">
-                  <Link to={`/services/${service._id}`} className="group h-full">
-                    <div className="h-full flex flex-col bg-white border border-border/20 hover:border-primary/40 transition-all duration-500 overflow-hidden">
-                      {/* Image Container */}
-                      <div className="relative h-64 overflow-hidden bg-muted/50">
-                        {service.serviceImage ? (
-                          <Image 
-                            src={service.serviceImage} 
-                            alt={service.serviceName || 'Service'} 
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-muted/30" />
-                        )}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="p-8 flex-grow flex flex-col justify-between">
-                        <div>
-                          <h3 className="text-lg font-heading font-bold text-secondary mb-3 group-hover:text-primary transition-colors duration-300">
-                            {service.serviceName}
-                          </h3>
-                          <p className="text-foreground/60 text-sm leading-relaxed line-clamp-3 font-light">
-                            {service.shortDescription}
-                          </p>
-                        </div>
-                        <div className="mt-6 flex items-center text-primary text-xs font-semibold uppercase tracking-wider group-hover:translate-x-1 transition-transform duration-300">
-                          Learn More <ArrowRight className="w-3 h-3 ml-2" />
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </FadeIn>
-              ))
-            ) : (
-              <div className="col-span-full text-center py-20 text-muted-foreground">
-                Services coming soon.
-              </div>
-            )}
-          </div>
+          {/* Press Carousel */}
+          <FadeIn direction="up" delay={100}>
+            <PressCarousel 
+              items={[
+                {
+                  _id: '1',
+                  title: 'Architecture Digest Feature',
+                  publication: 'Architecture Digest',
+                  projectName: 'Caribbean Luxury Residence',
+                  year: 2024,
+                  type: 'Featured project',
+                  image: 'https://static.wixstatic.com/media/307f6c_a7fd143cf2984f93854c12129409eb8e~mv2.png?originWidth=576&originHeight=384',
+                  description: 'Our signature Caribbean residence project was featured in Architecture Digest\'s annual design excellence issue, showcasing innovative tropical architecture and sustainable design principles.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '2',
+                  title: 'Interior Design Magazine',
+                  publication: 'Interior Design Magazine',
+                  projectName: 'Modern Minimalist Office',
+                  year: 2024,
+                  type: 'Editorial mention',
+                  image: 'https://static.wixstatic.com/media/307f6c_77ce03f547a249118344a4fdd6c4b539~mv2.png?originWidth=576&originHeight=384',
+                  description: 'Featured in the "Workspace Evolution" editorial series, highlighting how contemporary office design enhances productivity and employee wellbeing.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '3',
+                  title: 'Luxury Interiors Publication',
+                  publication: 'Luxury Interiors',
+                  projectName: 'Bespoke Furniture Collection',
+                  year: 2023,
+                  type: 'Published work',
+                  image: 'https://static.wixstatic.com/media/307f6c_0363eb106eec4091a5b126df8f59d290~mv2.png?originWidth=576&originHeight=384',
+                  description: 'Our custom furniture line was showcased in the publication\'s premium collection issue, demonstrating craftsmanship and innovative design.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '4',
+                  title: 'Modern Architecture Journal',
+                  publication: 'Modern Architecture Journal',
+                  projectName: 'Sustainable Urban Development',
+                  year: 2023,
+                  type: 'Architecture feature',
+                  image: 'https://static.wixstatic.com/media/307f6c_24f5151f959e43d7aca3b33b5e9e8650~mv2.png?originWidth=576&originHeight=384',
+                  description: 'In-depth analysis of our sustainable urban development project, exploring green building practices and community-centered design.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '5',
+                  title: 'Caribbean Design Feature',
+                  publication: 'Caribbean Design Quarterly',
+                  projectName: 'Tropical Resort Redesign',
+                  year: 2023,
+                  type: 'Featured project',
+                  image: 'https://static.wixstatic.com/media/307f6c_cb5b5a2f54c7405684c7e53838b29d6e~mv2.png?originWidth=576&originHeight=384',
+                  description: 'Comprehensive feature on our tropical resort redesign, celebrating the fusion of local culture with contemporary design aesthetics.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '6',
+                  title: 'Custom Furniture Editorial',
+                  publication: 'Design Today',
+                  projectName: 'Artisan Furniture Series',
+                  year: 2022,
+                  type: 'Editorial mention',
+                  image: 'https://static.wixstatic.com/media/307f6c_52c543dfba7f44e2946974969703cbbf~mv2.png?originWidth=576&originHeight=384',
+                  description: 'Editorial spotlight on our artisan furniture series, highlighting the intersection of traditional craftsmanship and modern design.',
+                  externalLink: '#'
+                }
+              ]}
+            />
+          </FadeIn>
+
+          {/* Explore Press Button */}
+          <FadeIn direction="up" delay={200} className="text-center mt-16">
+            <Button 
+              size="lg" 
+              className="bg-secondary text-white hover:bg-secondary/90 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
+              onClick={() => navigate('/services')}
+            >
+              Explore Our Press
+            </Button>
+          </FadeIn>
         </div>
       </section>
 

@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { Image } from '@/components/ui/image';
+import { Loader2, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PressCarousel, { PressItem } from '@/components/PressCarousel';
+import { BaseCrudService } from '@/integrations';
+import { Services } from '@/entities';
 
 const AnimatedElement: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,7 +34,7 @@ const AnimatedElement: React.FC<{ children: React.ReactNode; className?: string 
 };
 
 // Placeholder press items
-const PRESS_ITEMS: PressItem[] = [
+const PRESS_ITEMS = [
   {
     _id: '1',
     title: 'Architecture Digest Feature',
@@ -102,7 +105,23 @@ const PRESS_ITEMS: PressItem[] = [
 
 export default function ServicesPage() {
   const navigate = useNavigate();
-  const [pressItems] = useState<PressItem[]>(PRESS_ITEMS);
+  const [services, setServices] = useState<Services[]>([]);
+  const [isLoadingServices, setIsLoadingServices] = useState(true);
+
+  useEffect(() => {
+    loadServices();
+  }, []);
+
+  const loadServices = async () => {
+    try {
+      const result = await BaseCrudService.getAll<Services>('services');
+      setServices(result.items || []);
+    } catch (error) {
+      console.error('Error loading services:', error);
+    } finally {
+      setIsLoadingServices(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -122,32 +141,79 @@ export default function ServicesPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <p className="text-primary uppercase tracking-widest font-semibold text-sm mb-4">
-                Editorial Excellence
+                Our Services
               </p>
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-heading font-bold text-secondary mb-6 leading-tight">
-                Featured In
+                Design Solutions
               </h1>
               <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-                Selected publications, editorial mentions, and architectural features showcasing our completed projects across leading design and architecture publications.
+                Comprehensive design and construction solutions tailored to your vision
               </p>
             </motion.div>
           </AnimatedElement>
         </div>
       </section>
 
-      {/* Press Carousel Section */}
-      <section className="py-24 bg-gradient-to-b from-white via-white to-muted/30">
-        <div className="container mx-auto px-4 max-w-[120rem]">
-          <AnimatedElement>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true, margin: '-100px' }}
-            >
-              <PressCarousel items={pressItems} />
-            </motion.div>
+      {/* Services Grid Section */}
+      <section className="py-32 bg-background relative">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <AnimatedElement className="text-center mb-24">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-secondary mb-6">
+              Our Services
+            </h2>
+            <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-light">
+              Comprehensive design and construction solutions tailored to your vision
+            </p>
           </AnimatedElement>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {isLoadingServices ? (
+              <div className="col-span-full flex justify-center py-20">
+                <Loader2 className="w-10 h-10 animate-spin text-primary" />
+              </div>
+            ) : services.length > 0 ? (
+              services.map((service, index) => (
+                <AnimatedElement key={service._id} className={`${index % 2 === 0 ? 'delay-100' : 'delay-200'}`}>
+                  <Link to={`/services/${service._id}`} className="group h-full">
+                    <div className="h-full flex flex-col bg-white border border-border/20 hover:border-primary/40 transition-all duration-500 overflow-hidden">
+                      {/* Image Container */}
+                      <div className="relative h-64 overflow-hidden bg-muted/50">
+                        {service.serviceImage ? (
+                          <Image 
+                            src={service.serviceImage} 
+                            alt={service.serviceName || 'Service'} 
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-muted/30" />
+                        )}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="p-8 flex-grow flex flex-col justify-between">
+                        <div>
+                          <h3 className="text-lg font-heading font-bold text-secondary mb-3 group-hover:text-primary transition-colors duration-300">
+                            {service.serviceName}
+                          </h3>
+                          <p className="text-foreground/60 text-sm leading-relaxed line-clamp-3 font-light">
+                            {service.shortDescription}
+                          </p>
+                        </div>
+                        <div className="mt-6 flex items-center text-primary text-xs font-semibold uppercase tracking-wider group-hover:translate-x-1 transition-transform duration-300">
+                          Learn More <ArrowRight className="w-3 h-3 ml-2" />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </AnimatedElement>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-20 text-muted-foreground">
+                Services coming soon.
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -163,55 +229,27 @@ export default function ServicesPage() {
               className="max-w-4xl mx-auto text-center"
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-secondary mb-6">
-                Explore Our Press
+                Ready to Start Your Project?
               </h2>
               <p className="text-lg text-foreground/80 mb-12 max-w-2xl mx-auto">
-                Discover how our projects have been recognized and featured in leading architectural and design publications worldwide.
+                Let's discuss your vision and bring it to life with our comprehensive design and construction solutions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg"
                   className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105"
-                  onClick={() => navigate('/portfolio')}
+                  onClick={() => navigate('/contact')}
                 >
-                  View All Projects
+                  Get in Touch
                 </Button>
                 <Button 
                   size="lg"
                   variant="outline"
                   className="border-secondary text-secondary hover:bg-secondary/10"
-                  onClick={() => navigate('/contact')}
+                  onClick={() => navigate('/portfolio')}
                 >
-                  Get in Touch
+                  View Portfolio
                 </Button>
-              </div>
-            </motion.div>
-          </AnimatedElement>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-br from-secondary/5 to-primary/5">
-        <div className="container mx-auto px-4">
-          <AnimatedElement>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: '-100px' }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center"
-            >
-              <div>
-                <p className="text-5xl font-heading font-bold text-primary mb-2">50+</p>
-                <p className="text-foreground/80 text-lg">Publications Featured</p>
-              </div>
-              <div>
-                <p className="text-5xl font-heading font-bold text-secondary mb-2">100+</p>
-                <p className="text-foreground/80 text-lg">Projects Showcased</p>
-              </div>
-              <div>
-                <p className="text-5xl font-heading font-bold text-primary mb-2">15+</p>
-                <p className="text-foreground/80 text-lg">Years of Recognition</p>
               </div>
             </motion.div>
           </AnimatedElement>
