@@ -1,7 +1,7 @@
 // Premium Homepage - Ultra Professional & Minimalist Design
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Loader2, MapPin, Phone, Mail, Instagram, ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Loader2, MapPin, Phone, Mail, Instagram, ArrowRight, Check, ChevronLeft, ChevronRight, MessageSquare, Lightbulb, Pencil, Hammer, Wrench, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -626,39 +626,41 @@ export default function HomePage() {
                 step: '01', 
                 title: 'Consultation', 
                 description: 'We listen to your vision, understand your needs, and explore possibilities for your project.',
-                icon: '💬'
+                icon: MessageSquare
               },
               { 
                 step: '02', 
                 title: 'Concept', 
                 description: 'Our team develops initial concepts and creative directions tailored to your requirements.',
-                icon: '✨'
+                icon: Lightbulb
               },
               { 
                 step: '03', 
                 title: 'Design', 
                 description: 'Detailed design development with technical drawings, materials selection, and refinements.',
-                icon: '🎨'
+                icon: Pencil
               },
               { 
                 step: '04', 
                 title: 'Fabrication', 
                 description: 'Expert craftsmanship brings your design to life with precision and quality materials.',
-                icon: '🔨'
+                icon: Hammer
               },
               { 
                 step: '05', 
                 title: 'Installation', 
                 description: 'Professional installation ensures perfect execution and seamless integration into your space.',
-                icon: '📐'
+                icon: Wrench
               },
               { 
                 step: '06', 
                 title: 'Delivery', 
                 description: 'Final touches and handover, ensuring complete satisfaction with your new space.',
-                icon: '🎁'
+                icon: Package
               }
-            ].map((item, index) => (
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
               <FadeIn key={index} delay={index * 80} direction="up">
                 <div className="group relative h-full">
                   {/* Card Background with gradient */}
@@ -669,15 +671,17 @@ export default function HomePage() {
                   
                   {/* Content */}
                   <div className="relative p-8 h-full flex flex-col">
-                    {/* Step Number with background */}
-                    <div className="mb-6 flex items-center gap-4">
+                    {/* Step Number with background - Enhanced visibility */}
+                    <div className="mb-8 flex items-center gap-6">
                       <div className="relative">
-                        <div className="absolute inset-0 bg-primary/10 rounded-full blur-md group-hover:bg-primary/20 transition-all duration-300" />
-                        <span className="relative text-4xl font-heading font-bold text-primary/40 group-hover:text-primary/60 transition-colors duration-300">
+                        <div className="absolute inset-0 bg-primary/15 rounded-full blur-lg group-hover:bg-primary/25 transition-all duration-300" />
+                        <span className="relative text-6xl font-heading font-bold text-primary/70 group-hover:text-primary transition-colors duration-300">
                           {item.step}
                         </span>
                       </div>
-                      <div className="text-3xl">{item.icon}</div>
+                      <div className="w-14 h-14 rounded-full bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-all duration-300">
+                        <IconComponent className="w-7 h-7 text-primary/70 group-hover:text-primary transition-colors duration-300" />
+                      </div>
                     </div>
                     
                     {/* Title */}
@@ -697,7 +701,8 @@ export default function HomePage() {
                   </div>
                 </div>
               </FadeIn>
-            ))}
+            );
+            })}
           </div>
 
           {/* Timeline Visualization */}
