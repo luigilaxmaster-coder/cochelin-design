@@ -27,35 +27,41 @@ export default function PressCarousel({ items, onItemClick }: PressCarouselProps
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<NodeJS.Timeout>();
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
 
   // Duplicate items for infinite loop effect
   const duplicatedItems = [...items, ...items, ...items];
 
   useEffect(() => {
-    if (isPaused || items.length === 0) return;
+    if (isPaused || !isAutoPlay || items.length === 0) return;
 
     const startAnimation = () => {
       animationRef.current = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % (items.length * 3));
-      }, 50);
+      }, 4000); // Change every 4 seconds for smooth, readable carousel
     };
 
     startAnimation();
     return () => {
       if (animationRef.current) clearInterval(animationRef.current);
     };
-  }, [isPaused, items.length]);
+  }, [isPaused, isAutoPlay, items.length]);
 
   const handlePrevious = () => {
+    setIsAutoPlay(false);
     setCurrentIndex((prev) => (prev - 1 + duplicatedItems.length) % duplicatedItems.length);
   };
 
   const handleNext = () => {
+    setIsAutoPlay(false);
     setCurrentIndex((prev) => (prev + 1) % duplicatedItems.length);
   };
 
   const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+    setIsAutoPlay(true);
+  };
 
   if (items.length === 0) return null;
 
@@ -87,8 +93,8 @@ export default function PressCarousel({ items, onItemClick }: PressCarouselProps
             animate={{ x: `${offset}%` }}
             transition={{
               type: 'tween',
-              duration: 0.5,
-              ease: 'linear',
+              duration: 0.8,
+              ease: 'easeInOut',
             }}
           >
             {duplicatedItems.map((item, index) => (
@@ -99,38 +105,38 @@ export default function PressCarousel({ items, onItemClick }: PressCarouselProps
               >
                 <motion.div
                   className="h-full cursor-pointer group"
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ y: -12, scale: 1.02 }}
+                  transition={{ duration: 0.4, type: 'spring', stiffness: 300, damping: 20 }}
                   onClick={() => {
                     setSelectedItem(item);
                     onItemClick?.(item);
                   }}
                 >
                   {/* Card */}
-                  <div className="relative h-full rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white">
+                  <div className="relative h-full rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500 bg-white border border-border/20 group-hover:border-primary/40 transition-colors duration-300">
                     {/* Image */}
                     <div className="relative h-3/4 overflow-hidden bg-muted">
                       <Image
                         src={item.image}
                         alt={`${item.publication} - ${item.projectName}`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         width={400}
                       />
                       {/* Overlay on hover */}
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500" />
                     </div>
 
                     {/* Content */}
                     <div className="h-1/4 p-4 flex flex-col justify-between bg-white">
                       <div>
-                        <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-1">
+                        <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-1 group-hover:text-primary/80 transition-colors duration-300">
                           {item.type}
                         </p>
-                        <h3 className="text-sm font-heading font-bold text-secondary line-clamp-2">
+                        <h3 className="text-sm font-heading font-bold text-secondary line-clamp-2 group-hover:text-primary transition-colors duration-300">
                           {item.publication}
                         </h3>
                       </div>
-                      <p className="text-xs text-foreground/70">{item.year}</p>
+                      <p className="text-xs text-foreground/70 group-hover:text-foreground transition-colors duration-300">{item.year}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -139,27 +145,38 @@ export default function PressCarousel({ items, onItemClick }: PressCarouselProps
           </motion.div>
 
           {/* Navigation Arrows */}
-          <button
+          <motion.button
             onClick={handlePrevious}
             className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-secondary p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
             aria-label="Previous"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
           >
             <ChevronLeft size={24} />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={handleNext}
             className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-secondary p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
             aria-label="Next"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
           >
             <ChevronRight size={24} />
-          </button>
+          </motion.button>
 
           {/* Pause indicator */}
-          {isPaused && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-secondary/90 text-white px-3 py-1 rounded-full text-xs font-medium">
-              Paused
-            </div>
-          )}
+          <AnimatePresence>
+            {isPaused && (
+              <motion.div
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-secondary/90 text-white px-3 py-1 rounded-full text-xs font-medium"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+              >
+                Paused
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
@@ -167,7 +184,7 @@ export default function PressCarousel({ items, onItemClick }: PressCarouselProps
       <AnimatePresence>
         {selectedItem && (
           <motion.div
-            className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -175,19 +192,22 @@ export default function PressCarousel({ items, onItemClick }: PressCarouselProps
           >
             <motion.div
               className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
-              <button
+              <motion.button
                 onClick={() => setSelectedItem(null)}
                 className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-muted transition-colors z-10"
                 aria-label="Close"
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <X size={24} className="text-secondary" />
-              </button>
+              </motion.button>
 
               {/* Modal Content */}
               <div className="flex flex-col md:flex-row">
@@ -224,24 +244,32 @@ export default function PressCarousel({ items, onItemClick }: PressCarouselProps
                   {/* Actions */}
                   <div className="flex gap-4">
                     {selectedItem.externalLink && (
-                      <a
+                      <motion.a
                         href={selectedItem.externalLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                       >
                         <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                           Read Full Feature
                         </Button>
-                      </a>
+                      </motion.a>
                     )}
-                    <Button
-                      variant="outline"
-                      className="flex-1 border-secondary text-secondary hover:bg-secondary/10"
-                      onClick={() => setSelectedItem(null)}
+                    <motion.div
+                      className="flex-1"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      Close
-                    </Button>
+                      <Button
+                        variant="outline"
+                        className="w-full border-secondary text-secondary hover:bg-secondary/10"
+                        onClick={() => setSelectedItem(null)}
+                      >
+                        Close
+                      </Button>
+                    </motion.div>
                   </div>
                 </div>
               </div>
