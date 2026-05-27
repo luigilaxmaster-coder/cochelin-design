@@ -584,48 +584,123 @@ export default function HomePage() {
       <section className="py-32 bg-secondary relative overflow-hidden">
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
           <FadeIn direction="up" className="text-center mb-24">
+            <p className="text-xs uppercase tracking-[0.25em] text-primary/80 font-semibold mb-4">Why Choose Us</p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6">
-              Why Choose Us
+              Excellence in Every Detail
             </h2>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto font-light">
-              Our commitment to excellence and innovation sets us apart
+            <p className="text-white/70 text-lg max-w-3xl mx-auto font-light">
+              Our commitment to excellence and innovation sets us apart. We deliver more than designs—we create transformative experiences tailored to your vision.
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Premium Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
               {
                 title: 'Custom Design',
-                description: 'Every project is uniquely tailored to your vision and lifestyle.'
+                description: 'Every project is uniquely tailored to your vision and lifestyle.',
+                icon: Pencil,
+                number: '01'
               },
               {
                 title: 'Expert Execution',
-                description: 'From concept to completion, we manage every detail with precision.'
+                description: 'From concept to completion, we manage every detail with precision.',
+                icon: Hammer,
+                number: '02'
               },
               {
                 title: 'Diverse Expertise',
-                description: 'Proven experience across residential and commercial projects.'
+                description: 'Proven experience across residential and commercial projects.',
+                icon: Package,
+                number: '03'
               },
               {
                 title: 'Complete Solutions',
-                description: 'Seamless project management and turnkey delivery.'
+                description: 'Seamless project management and turnkey delivery.',
+                icon: Wrench,
+                number: '04'
               }
-            ].map((item, index) => (
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
               <FadeIn key={index} delay={index * 100} direction="up">
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 hover:bg-white/15 transition-all duration-300 group">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-secondary font-bold flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <Check className="w-6 h-6" />
+                <div className="group relative h-full overflow-hidden">
+                  {/* Gradient background card */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/5 to-transparent border border-white/20 group-hover:border-primary/50 transition-all duration-500 rounded-lg" />
+                  
+                  {/* Accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Content */}
+                  <div className="relative p-8 h-full flex flex-col">
+                    {/* Number and Icon */}
+                    <div className="flex items-start justify-between mb-8">
+                      <span className="text-5xl font-heading font-bold text-white/15 group-hover:text-primary/30 transition-colors duration-300">
+                        {item.number}
+                      </span>
+                      <div className="w-12 h-12 rounded-full bg-primary/20 group-hover:bg-primary/40 flex items-center justify-center transition-all duration-300 transform group-hover:scale-110">
+                        <IconComponent className="w-6 h-6 text-primary/80 group-hover:text-primary transition-colors duration-300" />
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-heading font-bold text-white mb-3">{item.title}</h3>
-                      <p className="text-white/80 text-sm leading-relaxed font-light">{item.description}</p>
+                    
+                    {/* Title */}
+                    <h3 className="text-xl font-heading font-bold text-white mb-4 group-hover:text-primary transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-white/70 text-sm leading-relaxed font-light flex-grow group-hover:text-white/80 transition-colors duration-300">
+                      {item.description}
+                    </p>
+                    
+                    {/* Hover indicator */}
+                    <div className="mt-6 flex items-center text-primary text-xs font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transform transition-all duration-300">
+                      <div className="w-1 h-1 rounded-full bg-primary mr-2" />
+                      Learn More
                     </div>
                   </div>
                 </div>
               </FadeIn>
-            ))}
+            );
+            })}
           </div>
+
+          {/* Additional Benefits Section */}
+          <FadeIn direction="up" delay={500} className="mt-20 pt-16 border-t border-white/10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  stat: '15+',
+                  label: 'Years of Experience',
+                  description: 'Proven track record in design excellence'
+                },
+                {
+                  stat: '200+',
+                  label: 'Projects Completed',
+                  description: 'Residential and commercial masterpieces'
+                },
+                {
+                  stat: '100%',
+                  label: 'Client Satisfaction',
+                  description: 'Dedicated to exceeding expectations'
+                }
+              ].map((item, idx) => (
+                <FadeIn key={idx} delay={600 + idx * 100} direction="up">
+                  <div className="text-center group">
+                    <div className="text-5xl md:text-6xl font-heading font-bold text-primary mb-3 group-hover:scale-110 transition-transform duration-300">
+                      {item.stat}
+                    </div>
+                    <h4 className="text-lg font-heading font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
+                      {item.label}
+                    </h4>
+                    <p className="text-white/60 text-sm font-light">
+                      {item.description}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
       {/* ===== PROCESS SECTION - DYNAMIC & AESTHETIC ===== */}
