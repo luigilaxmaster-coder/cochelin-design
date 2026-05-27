@@ -1,0 +1,214 @@
+{
+  "id": "8e261da9-e1f4-47fc-b744-90d612dbf78f",
+  "initialPrompt": "Create a website inspired by https://ccprojectdesign.com/en/home/",
+  "siteName": "ccprojectdesign.com",
+  "brandBook": {
+    "tones": [
+      "professional",
+      "expert",
+      "sophisticated",
+      "trustworthy",
+      "client-focused",
+      "elegant"
+    ],
+    "designStyle": {
+      "primaryStyle": [
+        "Elegant"
+      ],
+      "supportingStyles": [
+        "Minimalist",
+        "Professional",
+        "Luxury"
+      ]
+    },
+    "toneOfVoice": "Professional, sophisticated, expert, trustworthy, refined, client-focused.",
+    "graphicElements": {
+      "icons": "Minimalist, line-based icons with a consistent stroke weight, matching the 'accent' color (#818A91) or primary text color (#7E7E7E).",
+      "stickers": "",
+      "illustrations": "High-quality, sophisticated architectural renderings or abstract geometric forms that complement the brand's aesthetic. Avoid overly playful or cartoonish styles."
+    },
+    "designSummary": "**The Refined Architect: Precision, Craftsmanship, and Enduring Quality**\n\nThe design for CC Project Design will embody the essence of bespoke craftsmanship and architectural precision. Drawing inspiration from the elegance of high-end design studios and luxury publications, the visual language will communicate trust, sophistication, and an unwavering commitment to quality. The layout will be characterized by generous whitespace, balanced compositions, and a refined typographic hierarchy, ensuring that each element, from the smallest detail to the grandest statement, feels intentional and premium.\n\n**Execution Blueprint:**\n1. The Grid as a Foundation for Elegance: A strict, symmetrical grid system will be employed to ensure visual order and balance across all sections.\n2. Typography as a Sculptural Element: Headlines will be treated as architectural forms, using a classic serif font to convey gravitas and heritage. Body text will be rendered in a clean, legible sans-serif to ensure clarity and modern readability.\n3. The 8-Pixel Rhythm: All spacing, padding, and margins will adhere to a strict 8px base unit, creating a harmonious and predictable spatial rhythm that reinforces the sense of order and control.\n4. Subtle Accents for Quiet Luxury: A muted, sophisticated color palette will dominate, with a single, refined metallic accent used sparingly to highlight interactive elements and convey a sense of premium quality.\n5. Component Restraint: UI elements will be minimalist, defined by their form and spacing rather than overt decoration. Buttons will be understated, focusing on typography and subtle outlines.",
+    "layout": {
+      "grid": {
+        "margins": "Generous, typically 80px or more for section breaks.",
+        "padding": "Consistent internal padding within containers, typically 40px or 60px.",
+        "compositionApproach": "Symmetrical Multi-Column Grid with Generous Whitespace",
+        "spacing": {
+          "gaps": "Base unit: 8px. All grid gaps are 24px (3x base unit).",
+          "rows": "Flexible, based on content and visual rhythm",
+          "columns": "12-column grid system",
+          "compositionApproach": "Not specified"
+        }
+      },
+      "layoutDna": {
+        "contrastSpectrum": "Moderate contrast, relying on subtle variations in color and typography rather than harsh differences. Achieved through careful use of whitespace and muted tones.",
+        "densitySpectrum": "Spacious and airy, with significant negative space to emphasize content and create a premium feel.",
+        "textVsImageEmphasis": "Balanced, with high-quality imagery supporting and complementing the text. Typography is treated as a primary design element.",
+        "complexitySpectrum": "Low to moderate. Focus on clarity and ease of navigation, avoiding overly complex or cluttered interfaces.",
+        "gridAlignmentSpectrum": "Strictly symmetrical and balanced, adhering to a multi-column grid to ensure order and visual harmony.",
+        "negativeSpaceUsage": "Generous and intentional, used to frame content, create breathing room, and guide the user's eye through the design."
+      },
+      "heroSectionLayout": "**The Architectural Statement**\nComposition (Tailwind Spec): Main container (`h-screen grid place-items-center p-8`). A large, high-quality background image or video is set to `absolute inset-0 z-0` with a subtle dark overlay (`bg-black/30`). Headline 'CC Project Design: Crafting Your Vision' is centered (`relative z-10 text-center`) using `motion.h1` with `text-9xl font-bold leading-tight` in 'fraunces'. Sub-headline 'Custom Architectural Design, Furniture Manufacturing, and Construction Services' below it (`text-2xl mt-4`) in 'futura-lt-w01-book'.\nSignature Hook (Framer Motion Spec): Parent `motion.h1` uses `variants` with `transition: { staggerChildren: 0.05, delayChildren: 0.2 }`. Each `motion.span` (for individual letters) has a variant with `initial={{ opacity: 0, y: 30 }}` and `animate={{ opacity: 1, y: 0 }}`. The background image/video has a subtle `whileInView` fade-in effect."
+    },
+    "components": {
+      "images": "Layout Role: Integrated within the grid, often full-bleed or spanning multiple columns to create visual impact. | Gallery Type: Grid-based masonry or clean carousel layouts. Images are presented with ample padding around them, emphasizing their quality and detail. Avoid overlapping images.",
+      "buttons": "Primary: background-color: #BFAD9B, color: #FFFFFF, border-radius: 4px, padding: 12px 30px, font-weight: 700. Secondary: background-color: transparent, color: #818A91, border: 1px solid #818A91, border-radius: 4px, padding: 12px 30px, font-weight: 700. Ghost buttons with subtle hover effects are preferred for secondary actions.",
+      "containers": "Method: Whitespace, Style: 80px vertical margin between sections. Internal padding of 40px. Containers are defined by negative space and typography, not borders or heavy backgrounds."
+    },
+    "palette": {
+      "colors": {
+        "customColors": [
+          {
+            "name": "accent",
+            "value": "#818A91"
+          },
+          {
+            "name": "destructive",
+            "value": "#ff0000"
+          },
+          {
+            "name": "destructiveForeground",
+            "value": "#FFFFFF"
+          }
+        ],
+        "background": "#FFFFFF",
+        "secondary": "#CC3366",
+        "foreground": "#7E7E7E",
+        "secondaryForeground": "#FFFFFF",
+        "primaryForeground": "#FFFFFF",
+        "primary": "#BFAD9B"
+      },
+      "paletteUsageGuide": "The primary color (#BFAD9B) is a warm, earthy neutral that grounds the brand. It should be used for key calls to action, primary buttons, and significant design elements. The secondary color (#CC3366) is a bold accent, reserved for high-impact elements like secondary buttons or specific highlights that require immediate attention. The accent color (#818A91) serves as a sophisticated secondary neutral, ideal for links, secondary text, or subtle UI elements. The background is a clean white (#FFFFFF), providing ample breathing room, while the foreground text color (#7E7E7E) offers excellent readability against the background. Custom colors should be used judiciously, with 'destructive' reserved for error states.",
+      "paletteAccessibilityNotes": "Ensure sufficient contrast between primary/secondary colors and their foregrounds. The primary color (#BFAD9B) has good contrast against white (#FFFFFF) for foreground text. The secondary color (#CC3366) also provides adequate contrast against white. Text color (#7E7E7E) on white background (#FFFFFF) meets WCAG AA standards. Specific color combinations for interactive elements should be tested for accessibility."
+    },
+    "typography": {
+      "headings": {
+        "font": {
+          "fontFamily": "fraunces",
+          "role": "headings",
+          "fontJustification": ""
+        },
+        "headingsAccessibilityNotes": "While 'fraunces' is visually striking, ensure sufficient size and line height for headings to maintain readability. Avoid overly condensed settings for extended heading text.",
+        "headingsSimilarFonts": [],
+        "headingsUsageGuide": "The 'fraunces' font is to be used for all major headings (H1, H2, H3) to convey a sense of classic elegance and architectural gravitas. Its high contrast and distinctive serifs make it ideal for impactful titles. Ensure generous letter spacing for larger headlines to enhance readability and sophistication."
+      },
+      "paragraphs": {
+        "font": {
+          "fontFamily": "futura-lt-w01-book",
+          "role": "paragraphs",
+          "fontJustification": ""
+        },
+        "paragraphsUsageGuide": "The 'futura-lt-w01-book' font is designated for all body text, paragraphs, and secondary information. Its clean, geometric structure ensures excellent legibility and a modern, professional feel, balancing the classic serif headings. Maintain a comfortable line height and adequate spacing between paragraphs.",
+        "paragraphsSimilarFonts": [],
+        "paragraphsAccessibilityNotes": "The chosen sans-serif font ('futura-lt-w01-book') offers good readability. Ensure body text size is at least 16px, with line heights between 1.5 and 1.7 for optimal legibility. Avoid justified text for body copy to prevent hyphenation issues and improve reading flow."
+      },
+      "customFontFamilies": {},
+      "fontSizes": [
+        {
+          "name": "xs",
+          "size": "0.75rem",
+          "lineHeight": "1.25",
+          "letterSpacing": "0.02em",
+          "fontWeight": "400"
+        },
+        {
+          "name": "sm",
+          "size": "0.875rem",
+          "lineHeight": "1.3",
+          "letterSpacing": "0.02em",
+          "fontWeight": "400"
+        },
+        {
+          "name": "base",
+          "size": "1rem",
+          "lineHeight": "1.5",
+          "letterSpacing": "0.02em",
+          "fontWeight": "400"
+        },
+        {
+          "name": "lg",
+          "size": "1.125rem",
+          "lineHeight": "1.5",
+          "letterSpacing": "0.02em",
+          "fontWeight": "400"
+        },
+        {
+          "name": "xl",
+          "size": "1.25rem",
+          "lineHeight": "1.4",
+          "letterSpacing": "0.02em",
+          "fontWeight": "400"
+        },
+        {
+          "name": "2xl",
+          "size": "1.5rem",
+          "lineHeight": "1.3",
+          "letterSpacing": "0.01em",
+          "fontWeight": "600"
+        },
+        {
+          "name": "3xl",
+          "size": "1.875rem",
+          "lineHeight": "1.2",
+          "letterSpacing": "0.01em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "4xl",
+          "size": "2.25rem",
+          "lineHeight": "1.15",
+          "letterSpacing": "0.005em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "5xl",
+          "size": "3rem",
+          "lineHeight": "1.1",
+          "letterSpacing": "0.005em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "6xl",
+          "size": "3.75rem",
+          "lineHeight": "1.05",
+          "letterSpacing": "0.002em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "7xl",
+          "size": "4.5rem",
+          "lineHeight": "1.05",
+          "letterSpacing": "0.001em",
+          "fontWeight": "700"
+        },
+        {
+          "name": "8xl",
+          "size": "6rem",
+          "lineHeight": "1",
+          "letterSpacing": "0",
+          "fontWeight": "700"
+        },
+        {
+          "name": "9xl",
+          "size": "8rem",
+          "lineHeight": "1",
+          "letterSpacing": "0",
+          "fontWeight": "700"
+        }
+      ],
+      "welcomeSectionTypography": {
+        "placement": "Centered, prominent display.",
+        "implementation": "Use the largest heading size ('9xl' or '8xl') for the main welcome message, employing the 'fraunces' font. Sub-headlines or introductory text should use '2xl' or '3xl' with the 'futura-lt-w01-book' font. Ensure ample line height and letter spacing for maximum impact and readability."
+      }
+    },
+    "originImagesUrls": []
+  },
+  "attachments": {
+    "contentImagesUrls": [],
+    "inspirationImagesUrls": [
+      "https://wixmp-c562ea68f10846b458285ce5.wixmp.com/scraped-screenshots/screenshot-1779892995320.webp"
+    ]
+  },
+  "status": "READY",
+  "plan": "\n\n```json\n{\n  \"sections\": [\n    {\n      \"id\": \"overview\",\n      \"title\": \"## Overview\",\n      \"content\": \"This site showcases CC Project Design's architectural design, custom furniture manufacturing, and construction services with a professional portfolio and contact capabilities.\"\n    },\n    {\n      \"id\": \"key-features\",\n      \"title\": \"## Key features\",\n      \"content\": \"- **View Project Portfolio**: Browse a gallery of completed interior design, residential furniture, commercial furniture, and specialized projects like wine cellars.\\n- **View Service Listings**: Explore available services including design consulting, project construction, and turnkey delivery solutions.\\n- **View Company Information**: Learn about CC Project Design, CEO Claire Cochelin, and the company's expertise in custom architectural solutions.\\n- **Submit Contact Inquiry**: Send inquiries via a contact form with phone and email options for project consultations.\",\n      \"metadata\": [\n        { \"id\": \"view-project-portfolio\", \"name\": \"View Project Portfolio\" },\n        { \"id\": \"view-service-listings\", \"name\": \"View Service Listings\" },\n        { \"id\": \"view-company-information\", \"name\": \"View Company Information\" },\n        { \"id\": \"submit-contact-inquiry\", \"name\": \"Submit Contact Inquiry\" }\n      ]\n    },\n    {\n      \"id\": \"structure\",\n      \"title\": \"## Structure\",\n      \"content\": \"- **Header (Reusable)**: Site navigation with links to Home, Portfolio, Services, About, and Contact pages.\\n- **Home Page**: Introduction to CC Project Design with featured projects and service highlights.\\n- **Portfolio Page**: Gallery showcasing interior design projects, residential and commercial furniture, wine cellars, and humidors with detail views.\\n- **Services Page**: Detailed listing of design consulting, construction, turnkey delivery, and custom furniture services.\\n- **About Page**: Company background, CEO Claire Cochelin's profile, and expertise in architectural design.\\n- **Contact Page**: Contact form with phone and email information for project inquiries.\\n- **Footer (Reusable)**: Company contact details, quick links, and additional information.\"\n    }\n  ],\n  \"apps\": [\n    {\n      \"id\": \"wix-cms\",\n      \"keyFeatures\": [\n        { \"id\": \"view-project-portfolio\", \"name\": \"View Project Portfolio\" },\n        { \"id\": \"view-service-listings\", \"name\": \"View Service Listings\" },\n        { \"id\": \"view-company-information\", \"name\": \"View Company Information\" },\n        { \"id\": \"submit-contact-inquiry\", \"name\": \"Submit Contact Inquiry\" }\n      ]\n    }\n  ],\n  \"version\": \"4.0.1\"\n}\n```"
+}
