@@ -2,11 +2,12 @@ import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navLinks = [
     { path: '/', label: 'Home' },
@@ -23,11 +24,8 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 flex-shrink-0">
-
-            </div>
-            <span className="text-2xl font-heading font-bold tracking-tight text-secondary">
+          <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+            <span className="text-xl md:text-2xl font-heading font-bold tracking-tight text-secondary">
               CCprojectdesign
             </span>
           </Link>
@@ -46,6 +44,14 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+
+          {/* Desktop CTA Button */}
+          <Button
+            className="hidden md:inline-flex bg-primary text-secondary hover:bg-primary/90 rounded-none px-6 py-2 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
+            onClick={() => navigate('/contact')}
+          >
+            Book a Consultation
+          </Button>
 
           {/* Mobile Menu Button */}
           <Button
@@ -73,6 +79,15 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <Button
+              className="bg-primary text-secondary hover:bg-primary/90 rounded-none px-6 py-2 text-xs tracking-widest uppercase font-semibold transition-all duration-300 w-full mt-2"
+              onClick={() => {
+                navigate('/contact');
+                setIsMenuOpen(false);
+              }}
+            >
+              Book a Consultation
+            </Button>
           </nav>
         )}
       </div>

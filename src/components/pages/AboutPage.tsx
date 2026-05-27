@@ -36,7 +36,6 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
       {/* Hero Section */}
       <section className="relative min-h-[500px] flex items-center justify-center bg-gradient-to-br from-secondary/20 via-background to-primary/10">
         <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: 'url(https://static.wixstatic.com/media/307f6c_371f7db58328493c9cc838ef5c93b590~mv2.png?originWidth=1152&originHeight=448)' }} />
@@ -51,7 +50,6 @@ export default function AboutPage() {
           </AnimatedElement>
         </div>
       </section>
-
       {/* CEO Introduction */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -59,12 +57,14 @@ export default function AboutPage() {
             <AnimatedElement>
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
-                  <Image 
-                    src="https://static.wixstatic.com/media/307f6c_e34c51ad27294870b4403872765558cc~mv2.png?originWidth=576&originHeight=576" 
-                    alt="Claire Cochelin - CEO" 
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_2b11b3f0935d456e8507ee0d27316bdb~mv2.png"
                     className="w-full h-auto"
                     width={600}
-                  />
+                    originWidth={1086}
+                    originHeight={1448}
+                    focalPointX={42.21915285451197}
+                    focalPointY={20.33839779005525} />
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground rounded-2xl p-6 shadow-xl">
                   <p className="text-3xl font-bold">15+</p>
@@ -98,7 +98,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       {/* Values Section */}
       <section className="py-20 bg-gradient-to-b from-background to-secondary/5">
         <div className="container mx-auto px-4">
@@ -149,7 +148,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       {/* What We Do */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -205,7 +203,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-secondary/10 to-primary/5">
         <div className="container mx-auto px-4">
@@ -238,7 +235,6 @@ export default function AboutPage() {
           </AnimatedElement>
         </div>
       </section>
-
       <Footer />
     </div>
   );
