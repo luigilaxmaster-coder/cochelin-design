@@ -25,15 +25,9 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <div className="w-10 h-10 flex-shrink-0">
-              <Image
-                src="https://static.wixstatic.com/media/307f6c_30a5955d2e9e4186aeb0c9394fabedbc~mv2.png"
-                alt="CCprojectdesign logo"
-                width={40}
-                height={40}
-                className="w-full h-full object-cover"
-              />
+
             </div>
-            <span className="text-2xl font-heading font-bold text-primary tracking-tight">
+            <span className="text-2xl font-heading font-bold tracking-tight text-secondary">
               CCprojectdesign
             </span>
           </Link>
