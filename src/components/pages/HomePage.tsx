@@ -1,7 +1,7 @@
 // WI-HPI
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Loader2, MapPin, Phone, Mail, Instagram } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, MapPin, Phone, Mail, Instagram, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -438,6 +438,137 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      {/* WHY WORK WITH US SECTION */}
+      <section className="py-24 bg-secondary relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-1/2 h-full bg-secondary-foreground/5 skew-x-12 -translate-x-20" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            <FadeIn direction="up" className="text-center mb-16">
+              <span className="block text-3xl md:text-4xl italic mb-2 text-primary" style={{ fontFamily: 'cursive' }}>
+                Why
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold uppercase tracking-widest text-white">
+                Work With Us
+              </h2>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: 'Expert Design',
+                  description: 'With over 15 years of experience, we bring unparalleled expertise in architecture, interior design, and custom furniture creation.',
+                  icon: '✓'
+                },
+                {
+                  title: 'Personalized Approach',
+                  description: 'We listen to your vision and transform it into reality. Every project is tailored to your unique needs and preferences.',
+                  icon: '✓'
+                },
+                {
+                  title: 'Quality Craftsmanship',
+                  description: 'From concept to completion, we maintain the highest standards of quality and attention to detail in every project.',
+                  icon: '✓'
+                },
+                {
+                  title: 'Innovative Solutions',
+                  description: 'We combine creativity with functionality to deliver spaces that are both beautiful and practical.',
+                  icon: '✓'
+                },
+                {
+                  title: 'Timely Delivery',
+                  description: 'We respect your timeline and ensure projects are completed on schedule without compromising quality.',
+                  icon: '✓'
+                },
+                {
+                  title: 'Dedicated Support',
+                  description: 'Our team is committed to your satisfaction, providing ongoing support throughout and after your project.',
+                  icon: '✓'
+                }
+              ].map((item, index) => (
+                <FadeIn key={index} delay={index * 100} direction="up">
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 hover:bg-white/15 transition-all duration-300">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-secondary font-bold flex-shrink-0">
+                        <Check className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-heading font-bold text-white mb-3">{item.title}</h3>
+                        <p className="text-white/80 text-sm leading-relaxed">{item.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS SECTION */}
+      <section className="py-24 bg-background relative">
+        <div className="absolute top-0 left-0 right-0 h-64 bg-primary/10 -z-10" />
+        
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <FadeIn direction="up" className="text-center mb-16">
+              <span className="block text-3xl md:text-4xl italic mb-2 text-primary" style={{ fontFamily: 'cursive' }}>
+                Our
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold uppercase tracking-widest text-secondary">
+                Process
+              </h2>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  step: '01',
+                  title: 'Discovery & Consultation',
+                  description: 'We begin by understanding your vision, needs, and preferences through detailed consultations and site assessments.'
+                },
+                {
+                  step: '02',
+                  title: 'Design & Planning',
+                  description: 'Our team creates detailed designs and plans, incorporating your feedback to ensure the perfect direction.'
+                },
+                {
+                  step: '03',
+                  title: 'Development & Execution',
+                  description: 'We bring designs to life with meticulous craftsmanship, managing every detail of the implementation process.'
+                },
+                {
+                  step: '04',
+                  title: 'Delivery & Support',
+                  description: 'Final touches and quality assurance ensure perfection. We provide ongoing support after project completion.'
+                }
+              ].map((item, index) => (
+                <FadeIn key={index} delay={index * 150} direction="up">
+                  <div className="relative">
+                    {/* Connector line for desktop */}
+                    {index < 3 && (
+                      <div className="hidden lg:block absolute top-20 -right-4 w-8 h-1 bg-primary/30" />
+                    )}
+                    
+                    <div className="bg-white border border-border shadow-lg hover:shadow-xl transition-all duration-300 p-8 h-full flex flex-col">
+                      <div className="mb-6">
+                        <span className="text-5xl font-heading font-bold text-primary/20">{item.step}</span>
+                      </div>
+                      <h3 className="text-xl font-heading font-bold text-secondary mb-4">{item.title}</h3>
+                      <p className="text-foreground/80 text-sm leading-relaxed flex-grow">{item.description}</p>
+                      <div className="mt-6 flex items-center text-primary text-sm font-bold uppercase tracking-wider">
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CONTACT SECTION */}
       <section className="py-24 bg-muted relative">
         <div className="container mx-auto px-4">
