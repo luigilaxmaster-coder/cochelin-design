@@ -505,12 +505,12 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
             {[
-              { step: '01', title: 'Consultation' },
-              { step: '02', title: 'Concept' },
-              { step: '03', title: 'Design' },
-              { step: '04', title: 'Fabrication' },
-              { step: '05', title: 'Installation' },
-              { step: '06', title: 'Delivery' }
+              { step: '01', title: 'Consultation', icon: '💬' },
+              { step: '02', title: 'Concept', icon: '✏️' },
+              { step: '03', title: 'Design', icon: '🎨' },
+              { step: '04', title: 'Fabrication', icon: '🔨' },
+              { step: '05', title: 'Installation', icon: '📦' },
+              { step: '06', title: 'Delivery', icon: '✓' }
             ].map((item, index) => (
               <FadeIn key={index} delay={index * 80} direction="up">
                 <div className="relative">
@@ -520,9 +520,8 @@ export default function HomePage() {
                   )}
                   
                   <div className="bg-white border border-border shadow-lg hover:shadow-xl transition-all duration-300 p-6 h-full flex flex-col items-center text-center group">
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
-                      <span className="text-xl font-heading font-bold text-primary">{item.step}</span>
-                    </div>
+                    <div className="text-4xl mb-4 group-hover:scale-125 transition-transform duration-300">{item.icon}</div>
+                    <span className="text-3xl font-heading font-bold text-primary/30 mb-2">{item.step}</span>
                     <h3 className="text-sm font-heading font-bold text-secondary">{item.title}</h3>
                   </div>
                 </div>
