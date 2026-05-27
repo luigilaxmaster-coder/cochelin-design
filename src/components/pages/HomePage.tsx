@@ -764,47 +764,17 @@ export default function HomePage() {
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
-              <FadeIn key={index} delay={index * 80} direction="up">
-                <div className="group relative h-full">
-                  {/* Card Background with gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white to-white/50 border border-border/40 group-hover:border-primary/60 transition-all duration-500 rounded-lg shadow-sm group-hover:shadow-xl" />
-                  
-                  {/* Accent line on top */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/50 to-transparent rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Content */}
-                  <div className="relative p-8 h-full flex flex-col">
-                    {/* Step Number with background - Enhanced visibility */}
-                    <div className="mb-8 flex items-center gap-6">
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-primary/15 rounded-full blur-lg group-hover:bg-primary/25 transition-all duration-300" />
-                        <span className="relative text-6xl font-heading font-bold text-primary/70 group-hover:text-primary transition-colors duration-300">
-                          {item.step}
-                        </span>
-                      </div>
-                      <div className="w-14 h-14 rounded-full bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-all duration-300">
-                        <IconComponent className="w-7 h-7 text-primary/70 group-hover:text-primary transition-colors duration-300" />
-                      </div>
-                    </div>
-                    
-                    {/* Title */}
-                    <h3 className="text-xl font-heading font-bold text-secondary mb-3 group-hover:text-primary transition-colors duration-300">
-                      {item.title}
-                    </h3>
-                    
-                    {/* Description */}
-                    <p className="text-foreground/60 text-sm leading-relaxed font-light flex-grow">
-                      {item.description}
-                    </p>
-                    
-                    {/* Arrow indicator */}
-                    <div className="mt-6 flex items-center text-primary text-xs font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300">
-                      <ArrowRight className="w-3 h-3 ml-0 group-hover:ml-2 transition-all duration-300" />
-                    </div>
+                <FadeIn key={index} delay={index * 80} direction="up">
+                  <div className="group relative h-full">
+                    {/* Card Background with gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white to-white/50 border border-border/40 group-hover:border-primary/60 transition-all duration-500 rounded-lg shadow-sm group-hover:shadow-xl" />
+                    {/* Accent line on top */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/50 to-transparent rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {/* Content */}
+
                   </div>
-                </div>
-              </FadeIn>
-            );
+                </FadeIn>
+              );
             })}
           </div>
 
