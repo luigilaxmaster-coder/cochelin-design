@@ -61,7 +61,7 @@ export default function PortfolioPage() {
 
       {/* Hero Section */}
       <section className="relative min-h-[400px] flex items-center justify-center bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: 'url(https://static.wixstatic.com/media/12d367_71ebdd7141d041e4be3d91d80d4578dd~mv2.png?id=1)' }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: 'url(https://static.wixstatic.com/media/307f6c_2c6611a65f1b43699b7e30b39284f626~mv2.png?originWidth=1152&originHeight=384)' }} />
         <div className="relative z-10 container mx-auto px-4 text-center">
           <AnimatedElement>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-secondary mb-6">

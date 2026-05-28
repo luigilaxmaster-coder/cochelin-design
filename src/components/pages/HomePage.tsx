@@ -230,7 +230,7 @@ export default function HomePage() {
               Featured In
             </h2>
             <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-light">
-              Selected publications, editorial mentions, and architectural features showcasing our completed projects
+              revista de republica dominicana de arquitectura
             </p>
           </FadeIn>
 
