@@ -195,7 +195,7 @@ export default function HomePage() {
           </FadeIn>
           
           <FadeIn delay={300} direction="up">
-            <h1 className="font-bold mb-8 tracking-tight font-pinyon-script lg:text-7xl md:text-7xl text-7xl text-secondary">Custom made</h1>
+            <h1 className="font-bold mb-8 tracking-tight font-pinyon-script lg:text-8xl md:text-8xl text-8xl text-secondary">Custom made</h1>
           </FadeIn>
           
           <FadeIn delay={500} direction="up">
