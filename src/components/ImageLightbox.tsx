@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { Image } from '@/components/ui/image';
 
 interface ImageLightboxProps {
   images: string[];
@@ -13,145 +12,149 @@ export default function ImageLightbox({ images, projectTitle = 'Project', mainIm
   const [currentIndex, setCurrentIndex] = useState(mainImageIndex);
 
   useEffect(() => {
+    if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isOpen) return;
-
       if (e.key === 'Escape') setIsOpen(false);
-      if (e.key === 'ArrowLeft') handlePrevious();
-      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'ArrowLeft') setCurrentIndex(prev => (prev - 1 + images.length) % images.length);
+      if (e.key === 'ArrowRight') setCurrentIndex(prev => (prev + 1) % images.length);
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, images.length]);
+
+  // Lock body scroll when open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
 
   if (images.length === 0) return null;
 
+  const open = () => { setCurrentIndex(mainImageIndex); setIsOpen(true); };
+  const prev = (e: React.MouseEvent) => { e.stopPropagation(); setCurrentIndex(i => (i - 1 + images.length) % images.length); };
+  const next = (e: React.MouseEvent) => { e.stopPropagation(); setCurrentIndex(i => (i + 1) % images.length); };
+
   return (
     <>
-      {/* Main Image - Clickable */}
+      {/* ── Clickable thumbnail card ── */}
       <div
-        onClick={() => setIsOpen(true)}
-        className="relative h-80 overflow-hidden bg-muted rounded-2xl cursor-pointer group shadow-lg hover:shadow-2xl transition-all duration-300"
+        onClick={open}
+        className="relative h-80 overflow-hidden bg-muted cursor-pointer group shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl"
       >
-        <Image
+        <img
           src={images[mainImageIndex]}
           alt={projectTitle}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          width={600}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {images.length > 1 && (
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-            <div className="bg-white/90 text-secondary px-4 py-2 rounded-full text-sm font-semibold">
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+            <span className="bg-white/90 text-secondary px-4 py-2 rounded-full text-sm font-semibold shadow">
               Ver {images.length} fotos
-            </div>
+            </span>
           </div>
         )}
       </div>
 
-      {/* Lightbox Modal */}
+      {/* ── Lightbox Modal ── */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center p-4"
+          className="fixed inset-0 z-[9999] flex flex-col overflow-hidden"
           onClick={() => setIsOpen(false)}
         >
-          {/* Header */}
-          <div className="absolute top-4 left-0 right-0 flex items-center justify-between px-6 md:px-12 z-10">
-            <h2 className="text-white text-lg md:text-2xl font-bold">{projectTitle}</h2>
+
+          {/* Blurred background — fills black bars naturally */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${images[currentIndex]})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'blur(28px) brightness(0.25)',
+              transform: 'scale(1.08)',
+            }}
+          />
+          {/* Extra dark veil */}
+          <div className="absolute inset-0 bg-black/40" />
+
+          {/* ── Header ── */}
+          <div
+            className="relative z-10 flex-shrink-0 flex items-center justify-between px-5 py-4"
+            onClick={e => e.stopPropagation()}
+          >
+            <h2 className="text-white text-lg md:text-xl font-bold drop-shadow">{projectTitle}</h2>
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsOpen(false);
-              }}
-              className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white"
-              aria-label="Close"
+              onClick={() => setIsOpen(false)}
+              className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+              aria-label="Cerrar"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Main Gallery Container */}
+          {/* ── Main image area — flex-1 so it fills all space between header and thumbnails ── */}
           <div
-            className="w-full h-full flex items-center justify-center relative"
-            onClick={(e) => e.stopPropagation()}
+            className="relative z-10 flex-1 min-h-0 flex items-center justify-center"
+            onClick={e => e.stopPropagation()}
           >
-            {/* Current Image */}
-            <div className="w-full h-[70vh] md:h-[80vh] relative flex items-center justify-center">
-              <Image
-                src={images[currentIndex]}
-                alt={`${projectTitle} - Photo ${currentIndex + 1}`}
-                className="w-full h-full object-contain"
-              />
+            {/* Counter */}
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 text-white/80 text-sm font-semibold bg-black/30 px-3 py-1 rounded-full pointer-events-none">
+              {currentIndex + 1} / {images.length}
             </div>
 
-            {/* Navigation - Left */}
-            {images.length > 1 && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrevious();
-                }}
-                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300 text-white group z-20"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="w-6 h-6 group-hover:scale-125 transition-transform" />
-              </button>
-            )}
+            {/* The image — constrained so it never bleeds into header or thumbnails */}
+            <img
+              src={images[currentIndex]}
+              alt={`${projectTitle} — foto ${currentIndex + 1}`}
+              className="max-w-full max-h-full object-contain drop-shadow-2xl select-none"
+              style={{ maxHeight: 'calc(100vh - 180px)' }}
+              draggable={false}
+            />
 
-            {/* Navigation - Right */}
+            {/* Navigation arrows — only when multiple images */}
             {images.length > 1 && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNext();
-                }}
-                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center transition-all duration-300 text-white group z-20"
-                aria-label="Next image"
-              >
-                <ChevronRight className="w-6 h-6 group-hover:scale-125 transition-transform" />
-              </button>
+              <>
+                <button
+                  onClick={prev}
+                  className="absolute left-3 md:left-6 w-11 h-11 rounded-full bg-white/15 hover:bg-white/35 flex items-center justify-center text-white transition-all group"
+                  aria-label="Foto anterior"
+                >
+                  <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                </button>
+                <button
+                  onClick={next}
+                  className="absolute right-3 md:right-6 w-11 h-11 rounded-full bg-white/15 hover:bg-white/35 flex items-center justify-center text-white transition-all group"
+                  aria-label="Siguiente foto"
+                >
+                  <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                </button>
+              </>
             )}
           </div>
 
-          {/* Footer with Indicators and Counter */}
+          {/* ── Thumbnail strip — flex-shrink-0 so it always sits at the bottom ── */}
           {images.length > 1 && (
-            <div className="absolute bottom-6 left-0 right-0 flex flex-col items-center gap-4 z-10">
-              {/* Image Counter */}
-              <div className="text-white text-sm font-semibold">
-                {currentIndex + 1} / {images.length}
-              </div>
-
-              {/* Thumbnail Strip */}
-              <div className="flex gap-2 overflow-x-auto px-4 pb-2 max-w-4xl">
-                {images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentIndex(idx);
-                    }}
-                    className={`h-16 w-16 md:h-20 md:w-20 rounded-lg overflow-hidden flex-shrink-0 transition-all duration-300 border-2 ${
-                      idx === currentIndex
-                        ? 'border-primary scale-105'
-                        : 'border-white/20 opacity-60 hover:opacity-100 hover:border-white/40'
-                    }`}
-                  >
-                    <Image
-                      src={img}
-                      alt={`Thumbnail ${idx + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
+            <div
+              className="relative z-10 flex-shrink-0 flex justify-center gap-2 overflow-x-auto px-4 py-3"
+              onClick={e => e.stopPropagation()}
+            >
+              {images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={e => { e.stopPropagation(); setCurrentIndex(idx); }}
+                  className={`flex-shrink-0 h-14 w-14 md:h-16 md:w-16 rounded-lg overflow-hidden transition-all duration-200 border-2 ${
+                    idx === currentIndex
+                      ? 'border-primary opacity-100 scale-105 shadow-lg'
+                      : 'border-white/20 opacity-45 hover:opacity-80 hover:border-white/50'
+                  }`}
+                  aria-label={`Ver foto ${idx + 1}`}
+                >
+                  <img
+                    src={img}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
             </div>
           )}
         </div>
