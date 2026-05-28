@@ -174,148 +174,228 @@ export default function HomePage() {
     <div className="min-h-screen bg-background overflow-x-hidden font-paragraph text-foreground selection:bg-primary/30 selection:text-secondary">
       <Header />
       {/* ===== HERO SECTION - ULTRA MINIMALIST ===== */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-br from-secondary via-secondary/95 to-secondary">
-        {/* Background Gradient with Pattern */}
-        <div className="absolute inset-0 z-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-br from-white to-transparent"></div>
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Background Image with Subtle Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7572-scaled.jpg"
+            alt="CC Project Design - Interior Design Studio"
+            className="w-full h-full object-cover"
+          />
+          {/* Refined Overlay - More Subtle */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60" />
         </div>
 
         {/* Hero Content - Clean & Sophisticated */}
         <div className="relative z-10 container mx-auto px-4 py-20 text-center max-w-6xl">
           <FadeIn delay={100} direction="up">
-            <p className="text-xs md:text-sm text-white/70 mb-8 uppercase tracking-[0.25em] font-light">
-              Excellence en Cada Detalle
+            <p className="text-xs md:text-sm text-white/60 mb-8 uppercase tracking-[0.25em] font-light">
+              Design Excellence
             </p>
           </FadeIn>
-
+          
           <FadeIn delay={300} direction="up">
-            <h1 className="text-6xl font-bold text-white mb-8 leading-tight tracking-tight lg:text-7xl md:text-7xl">
-              Diseño <span className="text-primary">Personalizado</span>
-            </h1>
+            <h1 className="text-6xl font-bold text-white mb-8 leading-tight tracking-tight font-pinyon-script lg:text-7xl md:text-7xl">Custom made</h1>
           </FadeIn>
-
+          
           <FadeIn delay={500} direction="up">
-            <p className="text-lg md:text-xl text-white/80 mb-12 leading-relaxed max-w-3xl mx-auto font-light">
-              Muebles personalizados, diseño interior y soluciones arquitectónicas para espacios residenciales y comerciales refinados.
+            <p className="text-lg md:text-xl text-white/70 mb-12 leading-relaxed max-w-3xl mx-auto font-light">
+              Custom furniture, interior design, and architectural solutions for refined residential and commercial spaces.
             </p>
           </FadeIn>
-
+          
           <FadeIn delay={700} direction="up" className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-primary text-secondary hover:bg-primary/90 rounded-full px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+            <Button 
+              size="lg" 
+              className="bg-primary text-secondary hover:bg-primary/90 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
               onClick={() => navigate('/contact')}
             >
-              Comenzar Proyecto
+              Start Your Project
             </Button>
-            <Button
-              size="lg"
+            <Button 
+              size="lg" 
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-secondary rounded-full px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
+              className="border border-white text-white hover:bg-white/10 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
               onClick={() => document.getElementById('featured-projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Ver Portafolio
+              View Portfolio
             </Button>
           </FadeIn>
         </div>
       </section>
-      {/* ===== FEATURED PROJECTS QUICK ACCESS ===== */}
+      {/* ===== FEATURED IN SECTION - PRESS & PUBLICATIONS ===== */}
       <section className="py-32 bg-background relative">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto px-4 max-w-[120rem]">
           <FadeIn direction="up" className="text-center mb-24">
-            <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-4">Proyectos Destacados</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-secondary mb-6">
-              Nuestro <span className="text-primary">Trabajo</span>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-secondary mb-6">
+              Featured In
             </h2>
-            <p className="text-foreground/70 text-lg max-w-2xl mx-auto font-light">
-              Desde diseño interior exclusivo hasta cavas especializadas, cada proyecto refleja nuestro compromiso con la excelencia
+            <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-light">
+              revista de republica dominicana de arquitectura
             </p>
           </FadeIn>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {[
-              { number: '15+', label: 'Años de Experiencia', icon: '⭐' },
-              { number: '126', label: 'Proyectos Completados', icon: '✨' },
-              { number: '4', label: 'Categorías Especiales', icon: '🎯' }
-            ].map((stat, idx) => (
-              <FadeIn key={idx} delay={idx * 100} direction="up">
-                <div className="text-center p-8 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl border border-border/30 hover:border-primary/50 transition-all">
-                  <span className="text-4xl mb-3 block">{stat.icon}</span>
-                  <p className="text-3xl font-bold text-primary mb-2">{stat.number}</p>
-                  <p className="text-foreground/70">{stat.label}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+          {/* Press Carousel */}
+          <FadeIn direction="up" delay={100}>
+            <PressCarousel 
+              items={[
+                {
+                  _id: '1',
+                  title: 'Architecture Digest Feature',
+                  publication: 'Architecture Digest',
+                  projectName: 'Caribbean Luxury Residence',
+                  year: 2024,
+                  type: 'Featured project',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7572-scaled.jpg',
+                  description: 'Our signature Caribbean residence project was featured in Architecture Digest\'s annual design excellence issue, showcasing innovative tropical architecture and sustainable design principles.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '2',
+                  title: 'Interior Design Magazine',
+                  publication: 'Interior Design Magazine',
+                  projectName: 'Modern Minimalist Office',
+                  year: 2024,
+                  type: 'Editorial mention',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7505-scaled.jpg',
+                  description: 'Featured in the "Workspace Evolution" editorial series, highlighting how contemporary office design enhances productivity and employee wellbeing.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '3',
+                  title: 'Luxury Interiors Publication',
+                  publication: 'Luxury Interiors',
+                  projectName: 'Bespoke Furniture Collection',
+                  year: 2023,
+                  type: 'Published work',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7510-scaled.jpg',
+                  description: 'Our custom furniture line was showcased in the publication\'s premium collection issue, demonstrating craftsmanship and innovative design.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '4',
+                  title: 'Modern Architecture Journal',
+                  publication: 'Modern Architecture Journal',
+                  projectName: 'Sustainable Urban Development',
+                  year: 2023,
+                  type: 'Architecture feature',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7503-scaled.jpg',
+                  description: 'In-depth analysis of our sustainable urban development project, exploring green building practices and community-centered design.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '5',
+                  title: 'Caribbean Design Feature',
+                  publication: 'Caribbean Design Quarterly',
+                  projectName: 'Tropical Resort Redesign',
+                  year: 2023,
+                  type: 'Featured project',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7514-scaled.jpg',
+                  description: 'Comprehensive feature on our tropical resort redesign, celebrating the fusion of local culture with contemporary design aesthetics.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '6',
+                  title: 'Custom Furniture Editorial',
+                  publication: 'Design Today',
+                  projectName: 'Artisan Furniture Series',
+                  year: 2022,
+                  type: 'Editorial mention',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7517-scaled.jpg',
+                  description: 'Editorial spotlight on our artisan furniture series, highlighting the intersection of traditional craftsmanship and modern design.',
+                  externalLink: '#'
+                }
+              ]}
+            />
+          </FadeIn>
 
-          {/* CTA */}
-          <FadeIn direction="up" className="text-center">
-            <Button
-              size="lg"
-              className="bg-secondary text-white hover:bg-secondary/90 rounded-full px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-              onClick={() => navigate('/portfolio')}
+          {/* Explore Press Button */}
+          <FadeIn direction="up" delay={200} className="text-center mt-16">
+            <Button 
+              size="lg" 
+              className="bg-secondary text-white hover:bg-secondary/90 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
+              onClick={() => navigate('/services')}
             >
-              Ver Portafolio Completo <ArrowRight className="w-4 h-4 ml-2" />
+              Explore Our Press
             </Button>
           </FadeIn>
         </div>
       </section>
-      {/* ===== EXPERTISE SECTION - ELEGANT GRID ===== */}
-      <section className="py-32 bg-gradient-to-br from-background via-primary/2 to-background relative overflow-hidden">
+      {/* ===== EXPERTISE SECTION - ASYMMETRIC LAYOUT ===== */}
+      <section className="py-32 bg-white relative">
         <div className="container mx-auto px-4 max-w-7xl">
-          <FadeIn direction="up" className="text-center mb-20">
-            <p className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-4">Nuestro Expertise</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-secondary mb-6 leading-tight">
-              Soluciones de <span className="text-primary">Diseño Integral</span>
-            </h2>
-            <p className="text-foreground/70 text-lg max-w-2xl mx-auto leading-relaxed font-light">
-              Desde el concepto hasta la ejecución final, entregamos resultados excepcionales en todas las disciplinas de diseño.
-            </p>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {[
-              {
-                title: 'Diseño de Interiores',
-                desc: 'Espacios sofisticados que reflejan tu estilo de vida',
-                icon: '🏠',
-                color: 'from-blue-50 to-blue-100/50'
-              },
-              {
-                title: 'Mobiliario Personalizado',
-                desc: 'Piezas personalizadas creadas a la perfección',
-                icon: '🛋️',
-                color: 'from-amber-50 to-amber-100/50'
-              },
-              {
-                title: 'Arquitectura',
-                desc: 'Soluciones estructurales e innovadoras',
-                icon: '🏛️',
-                color: 'from-slate-50 to-slate-100/50'
-              },
-              {
-                title: 'Gestión de Proyectos',
-                desc: 'Ejecución sin interrupciones de inicio a fin',
-                icon: '📋',
-                color: 'from-emerald-50 to-emerald-100/50'
-              }
-            ].map((item, idx) => (
-              <FadeIn key={idx} delay={idx * 100} direction="up">
-                <div className={`group relative h-full bg-gradient-to-br ${item.color} border border-border/40 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:border-primary/50`}>
-                  <div className="mb-6">
-                    <span className="text-5xl">{item.icon}</span>
-                  </div>
-                  <h3 className="font-heading font-bold text-secondary mb-3 text-lg group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-foreground/70 text-sm leading-relaxed font-light">
-                    {item.desc}
-                  </p>
-                  <div className="absolute inset-0 rounded-2xl border border-primary/0 group-hover:border-primary/20 transition-all duration-300"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left - Images */}
+            <FadeIn direction="left" className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div className="relative h-80 overflow-hidden bg-muted">
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_c35188f31df7483f8ea4a3dbb343cb84~mv2.png"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    originWidth={928}
+                    originHeight={618}
+                    focalPointX={45.66271551724138}
+                    focalPointY={59.627831715210355} />
                 </div>
-              </FadeIn>
-            ))}
+                <div className="relative h-64 overflow-hidden bg-muted">
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_7150912e67b34f7986cf0bddbb046515~mv2.jpg"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    originWidth={1707}
+                    originHeight={2560} />
+                </div>
+              </div>
+              <div className="space-y-4 pt-8">
+                <div className="relative h-64 overflow-hidden bg-muted">
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_c674d698b62a4096a6b85762855f6c48~mv2.jpg"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    originWidth={1703}
+                    originHeight={2560} />
+                </div>
+                <div className="relative h-80 overflow-hidden bg-muted">
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_55a2b423af55449896c12b2b599fbedf~mv2.jpg"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    originWidth={1280}
+                    originHeight={853} />
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Right - Content */}
+            <FadeIn direction="right" delay={200} className="space-y-8">
+              <div>
+                <p className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-4">Our Expertise</p>
+                <h2 className="text-5xl md:text-6xl font-heading font-bold text-secondary mb-6 leading-tight">
+                  Comprehensive Design Solutions
+                </h2>
+                <p className="text-foreground/70 text-lg leading-relaxed font-light">
+                  From concept to completion, we deliver exceptional results across all design disciplines.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {[
+                  { title: 'Interior Design', desc: 'Sophisticated spaces that reflect your lifestyle' },
+                  { title: 'Custom Furniture', desc: 'Bespoke pieces crafted to perfection' },
+                  { title: 'Architecture', desc: 'Innovative structural and design solutions' },
+                  { title: 'Project Management', desc: 'Seamless execution from start to finish' }
+                ].map((item, idx) => (
+                  <FadeIn key={idx} delay={300 + idx * 100} direction="up">
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 mt-1">
+                        <Check className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-heading font-bold text-secondary mb-1">{item.title}</h3>
+                        <p className="text-foreground/60 text-sm font-light">{item.desc}</p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
