@@ -223,223 +223,6 @@ export default function HomePage() {
           </FadeIn>
         </div>
       </section>
-      {/* ===== FEATURED IN SECTION - PRESS & PUBLICATIONS ===== */}
-      <section className="py-32 bg-background relative">
-        <div className="container mx-auto px-4 max-w-[120rem]">
-          <FadeIn direction="up" className="text-center mb-24">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-secondary mb-6">
-              Featured In
-            </h2>
-            <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-light">
-              revista de republica dominicana de arquitectura
-            </p>
-          </FadeIn>
-
-          {/* Press Carousel */}
-          <FadeIn direction="up" delay={100}>
-            <PressCarousel 
-              items={[
-                {
-                  _id: '1',
-                  title: 'Architecture Digest Feature',
-                  publication: 'Architecture Digest',
-                  projectName: 'Caribbean Luxury Residence',
-                  year: 2024,
-                  type: 'Featured project',
-                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7572-scaled.jpg',
-                  description: 'Our signature Caribbean residence project was featured in Architecture Digest\'s annual design excellence issue, showcasing innovative tropical architecture and sustainable design principles.',
-                  externalLink: '#'
-                },
-                {
-                  _id: '2',
-                  title: 'Interior Design Magazine',
-                  publication: 'Interior Design Magazine',
-                  projectName: 'Modern Minimalist Office',
-                  year: 2024,
-                  type: 'Editorial mention',
-                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7505-scaled.jpg',
-                  description: 'Featured in the "Workspace Evolution" editorial series, highlighting how contemporary office design enhances productivity and employee wellbeing.',
-                  externalLink: '#'
-                },
-                {
-                  _id: '3',
-                  title: 'Luxury Interiors Publication',
-                  publication: 'Luxury Interiors',
-                  projectName: 'Bespoke Furniture Collection',
-                  year: 2023,
-                  type: 'Published work',
-                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7510-scaled.jpg',
-                  description: 'Our custom furniture line was showcased in the publication\'s premium collection issue, demonstrating craftsmanship and innovative design.',
-                  externalLink: '#'
-                },
-                {
-                  _id: '4',
-                  title: 'Modern Architecture Journal',
-                  publication: 'Modern Architecture Journal',
-                  projectName: 'Sustainable Urban Development',
-                  year: 2023,
-                  type: 'Architecture feature',
-                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7503-scaled.jpg',
-                  description: 'In-depth analysis of our sustainable urban development project, exploring green building practices and community-centered design.',
-                  externalLink: '#'
-                },
-                {
-                  _id: '5',
-                  title: 'Caribbean Design Feature',
-                  publication: 'Caribbean Design Quarterly',
-                  projectName: 'Tropical Resort Redesign',
-                  year: 2023,
-                  type: 'Featured project',
-                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7514-scaled.jpg',
-                  description: 'Comprehensive feature on our tropical resort redesign, celebrating the fusion of local culture with contemporary design aesthetics.',
-                  externalLink: '#'
-                },
-                {
-                  _id: '6',
-                  title: 'Custom Furniture Editorial',
-                  publication: 'Design Today',
-                  projectName: 'Artisan Furniture Series',
-                  year: 2022,
-                  type: 'Editorial mention',
-                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7517-scaled.jpg',
-                  description: 'Editorial spotlight on our artisan furniture series, highlighting the intersection of traditional craftsmanship and modern design.',
-                  externalLink: '#'
-                }
-              ]}
-            />
-          </FadeIn>
-
-          {/* Explore Press Button */}
-          <FadeIn direction="up" delay={200} className="text-center mt-16">
-            <Button 
-              size="lg" 
-              className="bg-secondary text-white hover:bg-secondary/90 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
-              onClick={() => navigate('/services')}
-            >
-              Explore Our Press
-            </Button>
-          </FadeIn>
-        </div>
-      </section>
-      {/* ===== EXPERTISE SECTION - ASYMMETRIC LAYOUT ===== */}
-      <section className="py-32 bg-white relative">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left - Images */}
-            <FadeIn direction="left" className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="relative h-80 overflow-hidden bg-muted">
-                  <Image
-                    src="https://static.wixstatic.com/media/307f6c_c35188f31df7483f8ea4a3dbb343cb84~mv2.png"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    originWidth={928}
-                    originHeight={618}
-                    focalPointX={45.66271551724138}
-                    focalPointY={59.627831715210355} />
-                </div>
-                <div className="relative h-64 overflow-hidden bg-muted">
-                  <Image
-                    src="https://static.wixstatic.com/media/307f6c_7150912e67b34f7986cf0bddbb046515~mv2.jpg"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    originWidth={1707}
-                    originHeight={2560} />
-                </div>
-              </div>
-              <div className="space-y-4 pt-8">
-                <div className="relative h-64 overflow-hidden bg-muted">
-                  <Image
-                    src="https://static.wixstatic.com/media/307f6c_c674d698b62a4096a6b85762855f6c48~mv2.jpg"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    originWidth={1703}
-                    originHeight={2560} />
-                </div>
-                <div className="relative h-80 overflow-hidden bg-muted">
-                  <Image
-                    src="https://static.wixstatic.com/media/307f6c_55a2b423af55449896c12b2b599fbedf~mv2.jpg"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    originWidth={1280}
-                    originHeight={853} />
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Right - Content */}
-            <FadeIn direction="right" delay={200} className="space-y-8">
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-4">Our Expertise</p>
-                <h2 className="text-5xl md:text-6xl font-heading font-bold text-secondary mb-6 leading-tight">
-                  Comprehensive Design Solutions
-                </h2>
-                <p className="text-foreground/70 text-lg leading-relaxed font-light">
-                  From concept to completion, we deliver exceptional results across all design disciplines.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                {[
-                  { title: 'Interior Design', desc: 'Sophisticated spaces that reflect your lifestyle' },
-                  { title: 'Custom Furniture', desc: 'Bespoke pieces crafted to perfection' },
-                  { title: 'Architecture', desc: 'Innovative structural and design solutions' },
-                  { title: 'Project Management', desc: 'Seamless execution from start to finish' }
-                ].map((item, idx) => (
-                  <FadeIn key={idx} delay={300 + idx * 100} direction="up">
-                    <div className="flex gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 mt-1">
-                        <Check className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-heading font-bold text-secondary mb-1">{item.title}</h3>
-                        <p className="text-foreground/60 text-sm font-light">{item.desc}</p>
-                      </div>
-                    </div>
-                  </FadeIn>
-                ))}
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-      {/* ===== ABOUT SECTION - REFINED ===== */}
-      <section className="py-32 bg-secondary relative overflow-hidden">
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <FadeIn direction="right">
-              <div className="text-white">
-                <p className="text-xs uppercase tracking-[0.25em] text-primary/80 font-semibold mb-4">About the Founder</p>
-                <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-8 leading-tight">
-                  Claire Cochelin
-                </h2>
-                <p className="text-lg text-white/80 mb-8 leading-relaxed font-light">
-                  Founder and CEO of CC Project Design, Claire brings over 15 years of expertise in architecture, interior design, and custom furniture creation. Her visionary approach has established her as a leading designer in Santo Domingo.
-                </p>
-                <p className="text-lg text-white/70 mb-10 leading-relaxed font-light italic border-l-2 border-primary pl-6">
-                  "Listening to what people desire, being creative and dedicated with all my expertise, always brings greater results than the original expectation."
-                </p>
-                <Button 
-                  className="bg-primary text-secondary hover:bg-white hover:text-secondary rounded-none px-10 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
-                  onClick={() => navigate('/about')}
-                >
-                  Learn More
-                </Button>
-              </div>
-            </FadeIn>
-            
-            <FadeIn direction="left" delay={200}>
-              <div className="relative">
-                <Image
-                  src="https://static.wixstatic.com/media/307f6c_2b11b3f0935d456e8507ee0d27316bdb~mv2.png"
-                  alt="Claire Cochelin, Founder & CEO"
-                  className="w-full h-auto object-cover"
-                  originWidth={1086}
-                  originHeight={1448}
-                  focalPointX={42.21915285451197}
-                  focalPointY={20.33839779005525}
-                />
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
       {/* ===== FEATURED PROJECTS SECTION - CAROUSEL ===== */}
       <section id="featured-projects" className="py-32 bg-background relative">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -589,6 +372,223 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      {/* ===== EXPERTISE SECTION - ASYMMETRIC LAYOUT ===== */}
+      <section className="py-32 bg-white relative">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left - Images */}
+            <FadeIn direction="left" className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div className="relative h-80 overflow-hidden bg-muted">
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_c35188f31df7483f8ea4a3dbb343cb84~mv2.png"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    originWidth={928}
+                    originHeight={618}
+                    focalPointX={45.66271551724138}
+                    focalPointY={59.627831715210355} />
+                </div>
+                <div className="relative h-64 overflow-hidden bg-muted">
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_7150912e67b34f7986cf0bddbb046515~mv2.jpg"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    originWidth={1707}
+                    originHeight={2560} />
+                </div>
+              </div>
+              <div className="space-y-4 pt-8">
+                <div className="relative h-64 overflow-hidden bg-muted">
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_c674d698b62a4096a6b85762855f6c48~mv2.jpg"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    originWidth={1703}
+                    originHeight={2560} />
+                </div>
+                <div className="relative h-80 overflow-hidden bg-muted">
+                  <Image
+                    src="https://static.wixstatic.com/media/307f6c_55a2b423af55449896c12b2b599fbedf~mv2.jpg"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    originWidth={1280}
+                    originHeight={853} />
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Right - Content */}
+            <FadeIn direction="right" delay={200} className="space-y-8">
+              <div>
+                <p className="text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-4">Our Expertise</p>
+                <h2 className="text-5xl md:text-6xl font-heading font-bold text-secondary mb-6 leading-tight">
+                  Comprehensive Design Solutions
+                </h2>
+                <p className="text-foreground/70 text-lg leading-relaxed font-light">
+                  From concept to completion, we deliver exceptional results across all design disciplines.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {[
+                  { title: 'Interior Design', desc: 'Sophisticated spaces that reflect your lifestyle' },
+                  { title: 'Custom Furniture', desc: 'Bespoke pieces crafted to perfection' },
+                  { title: 'Architecture', desc: 'Innovative structural and design solutions' },
+                  { title: 'Project Management', desc: 'Seamless execution from start to finish' }
+                ].map((item, idx) => (
+                  <FadeIn key={idx} delay={300 + idx * 100} direction="up">
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 mt-1">
+                        <Check className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-heading font-bold text-secondary mb-1">{item.title}</h3>
+                        <p className="text-foreground/60 text-sm font-light">{item.desc}</p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+      {/* ===== ABOUT SECTION - REFINED ===== */}
+      <section className="py-32 bg-secondary relative overflow-hidden">
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <FadeIn direction="right">
+              <div className="text-white">
+                <p className="text-xs uppercase tracking-[0.25em] text-primary/80 font-semibold mb-4">About the Founder</p>
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-8 leading-tight">
+                  Claire Cochelin
+                </h2>
+                <p className="text-lg text-white/80 mb-8 leading-relaxed font-light">
+                  Founder and CEO of CC Project Design, Claire brings over 15 years of expertise in architecture, interior design, and custom furniture creation. Her visionary approach has established her as a leading designer in Santo Domingo.
+                </p>
+                <p className="text-lg text-white/70 mb-10 leading-relaxed font-light italic border-l-2 border-primary pl-6">
+                  "Listening to what people desire, being creative and dedicated with all my expertise, always brings greater results than the original expectation."
+                </p>
+                <Button 
+                  className="bg-primary text-secondary hover:bg-white hover:text-secondary rounded-none px-10 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
+                  onClick={() => navigate('/about')}
+                >
+                  Learn More
+                </Button>
+              </div>
+            </FadeIn>
+            
+            <FadeIn direction="left" delay={200}>
+              <div className="relative">
+                <Image
+                  src="https://static.wixstatic.com/media/307f6c_2b11b3f0935d456e8507ee0d27316bdb~mv2.png"
+                  alt="Claire Cochelin, Founder & CEO"
+                  className="w-full h-auto object-cover"
+                  originWidth={1086}
+                  originHeight={1448}
+                  focalPointX={42.21915285451197}
+                  focalPointY={20.33839779005525}
+                />
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+      {/* ===== FEATURED IN SECTION - PRESS & PUBLICATIONS ===== */}
+      <section className="py-32 bg-background relative">
+        <div className="container mx-auto px-4 max-w-[120rem]">
+          <FadeIn direction="up" className="text-center mb-24">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-secondary mb-6">
+              Featured In
+            </h2>
+            <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-light">
+              revista de republica dominicana de arquitectura
+            </p>
+          </FadeIn>
+
+          {/* Press Carousel */}
+          <FadeIn direction="up" delay={100}>
+            <PressCarousel 
+              items={[
+                {
+                  _id: '1',
+                  title: 'Architecture Digest Feature',
+                  publication: 'Architecture Digest',
+                  projectName: 'Caribbean Luxury Residence',
+                  year: 2024,
+                  type: 'Featured project',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7572-scaled.jpg',
+                  description: 'Our signature Caribbean residence project was featured in Architecture Digest\'s annual design excellence issue, showcasing innovative tropical architecture and sustainable design principles.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '2',
+                  title: 'Interior Design Magazine',
+                  publication: 'Interior Design Magazine',
+                  projectName: 'Modern Minimalist Office',
+                  year: 2024,
+                  type: 'Editorial mention',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7505-scaled.jpg',
+                  description: 'Featured in the "Workspace Evolution" editorial series, highlighting how contemporary office design enhances productivity and employee wellbeing.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '3',
+                  title: 'Luxury Interiors Publication',
+                  publication: 'Luxury Interiors',
+                  projectName: 'Bespoke Furniture Collection',
+                  year: 2023,
+                  type: 'Published work',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7510-scaled.jpg',
+                  description: 'Our custom furniture line was showcased in the publication\'s premium collection issue, demonstrating craftsmanship and innovative design.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '4',
+                  title: 'Modern Architecture Journal',
+                  publication: 'Modern Architecture Journal',
+                  projectName: 'Sustainable Urban Development',
+                  year: 2023,
+                  type: 'Architecture feature',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7503-scaled.jpg',
+                  description: 'In-depth analysis of our sustainable urban development project, exploring green building practices and community-centered design.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '5',
+                  title: 'Caribbean Design Feature',
+                  publication: 'Caribbean Design Quarterly',
+                  projectName: 'Tropical Resort Redesign',
+                  year: 2023,
+                  type: 'Featured project',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7514-scaled.jpg',
+                  description: 'Comprehensive feature on our tropical resort redesign, celebrating the fusion of local culture with contemporary design aesthetics.',
+                  externalLink: '#'
+                },
+                {
+                  _id: '6',
+                  title: 'Custom Furniture Editorial',
+                  publication: 'Design Today',
+                  projectName: 'Artisan Furniture Series',
+                  year: 2022,
+                  type: 'Editorial mention',
+                  image: 'https://ccprojectdesign.com/wp-content/uploads/2021/07/IMG_7517-scaled.jpg',
+                  description: 'Editorial spotlight on our artisan furniture series, highlighting the intersection of traditional craftsmanship and modern design.',
+                  externalLink: '#'
+                }
+              ]}
+            />
+          </FadeIn>
+
+          {/* Explore Press Button */}
+          <FadeIn direction="up" delay={200} className="text-center mt-16">
+            <Button 
+              size="lg" 
+              className="bg-secondary text-white hover:bg-secondary/90 rounded-none px-12 py-6 text-xs tracking-widest uppercase font-semibold transition-all duration-300"
+              onClick={() => navigate('/services')}
+            >
+              Explore Our Press
+            </Button>
+          </FadeIn>
+        </div>
+      </section>
       {/* ===== WHY WORK WITH US SECTION ===== */}
       <section className="py-32 bg-secondary relative overflow-hidden">
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
@@ -670,8 +670,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </FadeIn>
-            );
-            })}
+            );})}
           </div>
 
           {/* Additional Benefits Section */}
