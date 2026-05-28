@@ -132,7 +132,7 @@ export default function CategoryPage() {
                       <img
                         src={project.mainImage}
                         alt={project.projectTitle || 'Proyecto'}
-                        className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
                         onError={(e) => {
                           (e.target as HTMLImageElement).style.display = 'none';
                         }}
@@ -159,7 +159,7 @@ export default function CategoryPage() {
                       </div>
                     </div>
                   ) : (
-                    <div className="h-80 bg-muted flex items-center justify-center">
+                    <div className="aspect-[4/3] bg-muted flex items-center justify-center">
                       <p className="text-foreground/40">Sin imagen</p>
                     </div>
                   )}

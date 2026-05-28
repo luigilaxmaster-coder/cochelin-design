@@ -9,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Image } from '@/components/ui/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ImageLightbox from '@/components/ImageLightbox';
 import PressCarousel, { PressItem } from '@/components/PressCarousel';
 import { BaseCrudService } from '@/integrations';
 import { Services, ProjectPortfolio } from '@/entities';
@@ -282,33 +281,41 @@ export default function HomePage() {
                 <div className="relative overflow-hidden">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                     {visibleProjects.map((project, index) => {
-                      const projectImages = project.galleryImages && project.galleryImages.length > 0
-                        ? project.galleryImages
-                        : project.mainImage ? [project.mainImage] : [];
+                      const coverImage = project.galleryImages && project.galleryImages.length > 0
+                        ? project.galleryImages[0]
+                        : project.mainImage || null;
                       return (
                         <FadeIn key={`${project._id}-carousel-${index}`} delay={index * 100} direction="up">
-                          {projectImages.length > 0 ? (
-                            <div className="relative group rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500">
-                              <ImageLightbox
-                                images={projectImages}
-                                projectTitle={project.projectTitle || 'Proyecto'}
-                                mainImageIndex={0}
-                              />
+                          {coverImage ? (
+                            <div
+                              className="relative group rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500 cursor-pointer"
+                              onClick={() => navigate(`/portfolio/${project._id}`)}
+                            >
+                              {/* Thumbnail image */}
+                              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                                <img
+                                  src={coverImage}
+                                  alt={project.projectTitle || 'Proyecto'}
+                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                              </div>
 
                               {/* Hover Overlay */}
                               <div className="absolute inset-0 bg-gradient-to-t from-secondary/95 via-secondary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 pointer-events-none">
                                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                   <p className="text-primary text-xs uppercase tracking-widest font-semibold mb-2">{project.category}</p>
                                   <h3 className="text-white font-heading font-bold text-2xl mb-3">{project.projectTitle}</h3>
-                                  <p className="text-white/80 text-sm font-light line-clamp-2">{project.detailedDescription}</p>
+                                  {project.detailedDescription && (
+                                    <p className="text-white/80 text-sm font-light line-clamp-2">{project.detailedDescription}</p>
+                                  )}
                                   <div className="mt-4 flex items-center text-primary text-xs font-semibold uppercase tracking-wider">
-                                    Hacer clic para ver fotos <ArrowRight className="w-3 h-3 ml-2" />
+                                    Ver detalles <ArrowRight className="w-3 h-3 ml-2" />
                                   </div>
                                 </div>
                               </div>
                             </div>
                           ) : (
-                            <div className="h-96 bg-muted flex items-center justify-center rounded-sm shadow-lg" />
+                            <div className="aspect-[4/3] bg-muted rounded-sm shadow-lg" />
                           )}
                         </FadeIn>
                       );
