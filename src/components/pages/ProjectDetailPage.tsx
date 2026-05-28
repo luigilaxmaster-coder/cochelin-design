@@ -106,8 +106,10 @@ export default function ProjectDetailPage() {
     );
   }
 
-  // Get all project images (mainImage + any gallery images)
-  const allImages = project.mainImage ? [project.mainImage] : [];
+  // Use galleryImages array if available, otherwise fall back to mainImage only
+  const allImages = project.galleryImages && project.galleryImages.length > 0
+    ? project.galleryImages
+    : project.mainImage ? [project.mainImage] : [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -158,7 +160,9 @@ export default function ProjectDetailPage() {
               Galería del Proyecto
             </h2>
             <p className="text-foreground/60">
-              Haz clic en la imagen para ver todas las fotos del proyecto
+              {allImages.length > 1
+                ? `${allImages.length} fotos — haz clic en la imagen para ver la galería completa`
+                : 'Haz clic en la imagen para verla en pantalla completa'}
             </p>
           </AnimatedElement>
 

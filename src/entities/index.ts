@@ -42,6 +42,8 @@ export interface ProjectPortfolio {
   detailedDescription?: string;
   /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
   mainImage?: string;
+  /** @wixFieldType array_string - Array of image URLs for the project gallery */
+  galleryImages?: string[];
   /** @wixFieldType date */
   completionDate?: Date | string;
   /** @wixFieldType text */

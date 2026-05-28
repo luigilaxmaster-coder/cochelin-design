@@ -141,8 +141,10 @@ export default function PortfolioPage() {
               </div>
             ) : filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => {
-                // Get all project images (mainImage + any gallery images)
-                const projectImages = project.mainImage ? [project.mainImage] : [];
+                // Use galleryImages array if available, otherwise fall back to mainImage
+                const projectImages = project.galleryImages && project.galleryImages.length > 0
+                  ? project.galleryImages
+                  : project.mainImage ? [project.mainImage] : [];
 
                 return (
                   <AnimatedElement key={project._id} className={`delay-${(index % 6) * 100}`}>

@@ -282,7 +282,9 @@ export default function HomePage() {
                 <div className="relative overflow-hidden">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                     {visibleProjects.map((project, index) => {
-                      const projectImages = project.mainImage ? [project.mainImage] : [];
+                      const projectImages = project.galleryImages && project.galleryImages.length > 0
+                        ? project.galleryImages
+                        : project.mainImage ? [project.mainImage] : [];
                       return (
                         <FadeIn key={`${project._id}-carousel-${index}`} delay={index * 100} direction="up">
                           {projectImages.length > 0 ? (
