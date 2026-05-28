@@ -5,6 +5,7 @@ import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 import HomePage from '@/components/pages/HomePage';
 import ServicesPage from '@/components/pages/ServicesPage';
 import PortfolioPage from '@/components/pages/PortfolioPage';
+import ProjectDetailPage from '@/components/pages/ProjectDetailPage';
 import AboutPage from '@/components/pages/AboutPage';
 import ContactPage from '@/components/pages/ContactPage';
 
@@ -43,6 +44,13 @@ const router = createBrowserRouter([
         element: <PortfolioPage />,
         routeMetadata: {
           pageIdentifier: 'portfolio',
+        },
+      },
+      {
+        path: "portfolio/:projectId",
+        element: <ProjectDetailPage />,
+        routeMetadata: {
+          pageIdentifier: 'project-detail',
         },
       },
       {

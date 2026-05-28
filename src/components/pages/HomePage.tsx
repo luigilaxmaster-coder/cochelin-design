@@ -503,7 +503,10 @@ export default function HomePage() {
                       return (
                         <FadeIn key={`${project._id}-carousel-${index}`} delay={index * 100} direction="up">
                           {projectImages.length > 0 ? (
-                            <div className="relative group rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500">
+                            <div
+                              onClick={() => navigate(`/portfolio/${project._id}`)}
+                              className="relative group rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:scale-[1.02]"
+                            >
                               <ImageLightbox
                                 images={projectImages}
                                 projectTitle={project.projectTitle || 'Proyecto'}
@@ -517,7 +520,7 @@ export default function HomePage() {
                                   <h3 className="text-white font-heading font-bold text-2xl mb-3">{project.projectTitle}</h3>
                                   <p className="text-white/80 text-sm font-light line-clamp-2">{project.detailedDescription}</p>
                                   <div className="mt-4 flex items-center text-primary text-xs font-semibold uppercase tracking-wider">
-                                    Hacer clic para ver fotos <ArrowRight className="w-3 h-3 ml-2" />
+                                    Ver detalles <ArrowRight className="w-3 h-3 ml-2" />
                                   </div>
                                 </div>
                               </div>

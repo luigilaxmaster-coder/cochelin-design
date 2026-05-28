@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Image } from '@/components/ui/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -32,6 +33,7 @@ const AnimatedElement: React.FC<{ children: React.ReactNode; className?: string 
 };
 
 export default function PortfolioPage() {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState<ProjectPortfolio[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -144,7 +146,10 @@ export default function PortfolioPage() {
 
                 return (
                   <AnimatedElement key={project._id} className={`delay-${(index % 6) * 100}`}>
-                    <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-card h-full flex flex-col">
+                    <div
+                      onClick={() => navigate(`/portfolio/${project._id}`)}
+                      className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-card h-full flex flex-col cursor-pointer group hover:scale-[1.02]"
+                    >
                       {/* Image with Lightbox */}
                       {project.mainImage && projectImages.length > 0 ? (
                         <div className="relative">
@@ -171,7 +176,7 @@ export default function PortfolioPage() {
                                 <p className="text-white/90 text-sm mb-3">Cliente: {project.clientName}</p>
                               )}
                               <div className="flex items-center text-white text-xs font-semibold uppercase tracking-wider">
-                                Hacer clic para ver fotos <ArrowRight className="w-3 h-3 ml-2" />
+                                Ver detalles <ArrowRight className="w-3 h-3 ml-2" />
                               </div>
                             </div>
                           </div>
