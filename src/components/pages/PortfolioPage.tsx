@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { BaseCrudService } from '@/integrations';
 import { ProjectPortfolio } from '@/entities';
+import { ArrowRight } from 'lucide-react';
 
 const AnimatedElement: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -74,23 +75,38 @@ export default function PortfolioPage() {
       </section>
 
       {/* Filter Section */}
-      <section className="py-8 bg-muted/30">
+      <section className="py-12 bg-gradient-to-b from-muted/50 to-background">
         <div className="container mx-auto px-4">
           <AnimatedElement>
-            <div className="flex flex-wrap justify-center gap-4">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-2 rounded-full font-medium transition-all hover:scale-105 ${
-                    selectedCategory === category
-                      ? 'bg-primary text-primary-foreground shadow-lg'
-                      : 'bg-background text-foreground hover:bg-muted border border-border'
-                  }`}
-                >
-                  {category === 'all' ? 'All Projects' : category}
-                </button>
-              ))}
+            <div className="mb-6 text-center">
+              <p className="text-sm text-foreground/60 uppercase tracking-widest font-semibold">Explorar por Categoría</p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {categories.map((category) => {
+                const count = category === 'all'
+                  ? projects.length
+                  : projects.filter(p => p.category === category).length;
+                return (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 text-sm uppercase tracking-wider ${
+                      selectedCategory === category
+                        ? 'bg-primary text-primary-foreground shadow-lg scale-105'
+                        : 'bg-background text-foreground hover:bg-muted border border-border/50 hover:border-primary/30'
+                    }`}
+                  >
+                    {category === 'all' ? 'Todos' : category}
+                    <span className={`ml-2 inline-block px-2 py-1 rounded text-xs ${
+                      selectedCategory === category
+                        ? 'bg-primary-foreground/20'
+                        : 'bg-foreground/10'
+                    }`}>
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </AnimatedElement>
         </div>
@@ -99,47 +115,76 @@ export default function PortfolioPage() {
       {/* Projects Grid */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
+          {/* Projects Counter */}
+          {!isLoading && (
+            <AnimatedElement className="text-center mb-12">
+              <p className="text-sm text-foreground/60 uppercase tracking-widest font-semibold mb-2">Mostrando</p>
+              <p className="text-3xl font-bold text-primary">{filteredProjects.length}</p>
+              <p className="text-foreground/70">
+                {selectedCategory === 'all'
+                  ? 'Proyectos en Total'
+                  : `Proyectos en ${selectedCategory}`}
+              </p>
+            </AnimatedElement>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
-            {isLoading ? null : filteredProjects.length > 0 ? (
+            {isLoading ? (
+              <div className="col-span-3 flex items-center justify-center py-20">
+                <div className="text-center">
+                  <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
+                  <p className="text-foreground/60">Cargando proyectos...</p>
+                </div>
+              </div>
+            ) : filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
                 <AnimatedElement key={project._id} className={`delay-${(index % 6) * 100}`}>
-                  <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] bg-card cursor-pointer">
-                    <div className="relative h-80 overflow-hidden">
+                  <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] bg-card cursor-pointer h-full">
+                    <div className="relative h-80 overflow-hidden bg-muted">
                       {project.mainImage && (
-                        <Image 
-                          src={project.mainImage} 
-                          alt={project.projectTitle || 'Project'} 
+                        <Image
+                          src={project.mainImage}
+                          alt={project.projectTitle || 'Project'}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           width={600}
                         />
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {/* Category Badge */}
+                      {project.category && (
+                        <div className="absolute top-4 left-4 z-10">
+                          <span className="inline-block bg-primary/90 text-primary-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            {project.category}
+                          </span>
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-secondary/95 via-secondary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <h3 className="text-xl font-heading font-bold text-white mb-2">
+                        <h3 className="text-xl font-heading font-bold text-white mb-3">
                           {project.projectTitle}
                         </h3>
-                        {project.category && (
-                          <p className="text-white/90 text-sm uppercase tracking-wider mb-2">{project.category}</p>
-                        )}
                         {project.clientName && (
-                          <p className="text-white/80 text-sm">Client: {project.clientName}</p>
+                          <p className="text-white/90 text-sm mb-3">Cliente: {project.clientName}</p>
                         )}
+                        <div className="flex items-center text-white text-xs font-semibold uppercase tracking-wider">
+                          Ver Detalles <ArrowRight className="w-3 h-3 ml-2" />
+                        </div>
                       </div>
                     </div>
-                    <div className="p-6">
+                    <div className="p-6 flex flex-col h-[140px]">
                       <h3 className="text-lg font-heading font-bold text-secondary mb-2">
                         {project.projectTitle}
                       </h3>
                       {project.detailedDescription && (
-                        <p className="text-foreground text-sm line-clamp-2">{project.detailedDescription}</p>
+                        <p className="text-foreground text-sm line-clamp-2 flex-grow">{project.detailedDescription}</p>
                       )}
                     </div>
                   </div>
                 </AnimatedElement>
               ))
             ) : (
-              <div className="col-span-3 text-center py-12">
-                <p className="text-foreground text-lg">No projects found in this category.</p>
+              <div className="col-span-3 text-center py-20">
+                <p className="text-foreground text-xl font-semibold mb-2">No hay proyectos en esta categoría</p>
+                <p className="text-foreground/60">Intenta seleccionar otra categoría</p>
               </div>
             )}
           </div>
@@ -147,34 +192,53 @@ export default function PortfolioPage() {
       </section>
 
       {/* Categories Showcase */}
-      <section className="py-20 bg-gradient-to-b from-background to-secondary/5">
+      <section className="py-24 bg-gradient-to-b from-background via-secondary/3 to-background">
         <div className="container mx-auto px-4">
           <AnimatedElement>
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-secondary mb-4">
-                Project <span className="text-primary">Categories</span>
+            <div className="text-center mb-16">
+              <p className="text-sm text-primary uppercase tracking-widest font-semibold mb-4">Nuestras Especialidades</p>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-secondary mb-6">
+                Categorías de <span className="text-primary">Proyectos</span>
               </h2>
-              <p className="text-lg text-foreground max-w-2xl mx-auto">
-                From interior design to specialized wine cellars, we bring expertise to every project
+              <p className="text-lg text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+                Desde diseño interior hasta cavas especializadas, traemos experiencia a cada proyecto
               </p>
             </div>
           </AnimatedElement>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Diseño de Interiores', count: projects.filter(p => p.category === 'Diseño de Interiores').length },
-              { title: 'Mobiliario Residencial', count: projects.filter(p => p.category === 'Mobiliario Residencial').length },
-              { title: 'Mobiliario Comercial', count: projects.filter(p => p.category === 'Mobiliario Comercial').length },
-              { title: 'Cavas y Humidores', count: projects.filter(p => p.category === 'Cavas y Humidores').length }
-            ].map((cat, index) => (
-              <AnimatedElement key={index} className={`delay-${index * 100}`}>
-                <div className="bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] text-center">
-                  <h3 className="text-xl font-heading font-bold text-secondary mb-2">{cat.title}</h3>
-                  <p className="text-3xl font-bold text-primary">{cat.count}</p>
-                  <p className="text-foreground text-sm">Projects</p>
-                </div>
-              </AnimatedElement>
-            ))}
+              { title: 'Diseño de Interiores', key: 'Diseño de Interiores', icon: '🏠' },
+              { title: 'Mobiliario Residencial', key: 'Mobiliario Residencial', icon: '🛋️' },
+              { title: 'Mobiliario Comercial', key: 'Mobiliario Comercial', icon: '🏢' },
+              { title: 'Cavas y Humidores', key: 'Cavas y Humidores', icon: '🍷' }
+            ].map((cat, index) => {
+              const count = projects.filter(p => p.category === cat.key).length;
+              return (
+                <AnimatedElement key={index} className={`delay-${index * 100}`}>
+                  <button
+                    onClick={() => setSelectedCategory(cat.key)}
+                    className="group relative h-full bg-gradient-to-br from-card to-card/80 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.05] hover:from-primary/10 hover:to-primary/5 border border-border/30 hover:border-primary/50 text-left"
+                  >
+                    <div className="mb-4">
+                      <span className="text-4xl">{cat.icon}</span>
+                    </div>
+                    <h3 className="text-xl font-heading font-bold text-secondary mb-3 group-hover:text-primary transition-colors">
+                      {cat.title}
+                    </h3>
+                    <div className="space-y-2 mb-4">
+                      <p className="text-4xl font-bold text-primary">{count}</p>
+                      <p className="text-foreground/70 text-sm">
+                        {count === 1 ? 'Proyecto' : 'Proyectos'}
+                      </p>
+                    </div>
+                    <div className="flex items-center text-primary text-xs font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                      Ver Todos <ArrowRight className="w-3 h-3 ml-2" />
+                    </div>
+                  </button>
+                </AnimatedElement>
+              );
+            })}
           </div>
         </div>
       </section>
