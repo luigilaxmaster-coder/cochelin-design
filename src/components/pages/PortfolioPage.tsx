@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Image } from '@/components/ui/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ImageLightbox from '@/components/ImageLightbox';
 import { BaseCrudService } from '@/integrations';
 import { ProjectPortfolio } from '@/entities';
 import { ArrowRight } from 'lucide-react';
@@ -137,50 +138,63 @@ export default function PortfolioPage() {
                 </div>
               </div>
             ) : filteredProjects.length > 0 ? (
-              filteredProjects.map((project, index) => (
-                <AnimatedElement key={project._id} className={`delay-${(index % 6) * 100}`}>
-                  <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] bg-card cursor-pointer h-full">
-                    <div className="relative h-80 overflow-hidden bg-muted">
-                      {project.mainImage && (
-                        <Image
-                          src={project.mainImage}
-                          alt={project.projectTitle || 'Project'}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          width={600}
-                        />
-                      )}
-                      {/* Category Badge */}
-                      {project.category && (
-                        <div className="absolute top-4 left-4 z-10">
-                          <span className="inline-block bg-primary/90 text-primary-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                            {project.category}
-                          </span>
+              filteredProjects.map((project, index) => {
+                // Get all project images (mainImage + any gallery images)
+                const projectImages = project.mainImage ? [project.mainImage] : [];
+
+                return (
+                  <AnimatedElement key={project._id} className={`delay-${(index % 6) * 100}`}>
+                    <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-card h-full flex flex-col">
+                      {/* Image with Lightbox */}
+                      {project.mainImage && projectImages.length > 0 ? (
+                        <div className="relative">
+                          <ImageLightbox
+                            images={projectImages}
+                            projectTitle={project.projectTitle || 'Proyecto'}
+                            mainImageIndex={0}
+                          />
+                          {/* Category Badge */}
+                          {project.category && (
+                            <div className="absolute top-4 left-4 z-10">
+                              <span className="inline-block bg-primary/90 text-primary-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                {project.category}
+                              </span>
+                            </div>
+                          )}
+                          {/* Hover Info Overlay */}
+                          <div className="absolute inset-0 top-0 h-80 bg-gradient-to-t from-secondary/95 via-secondary/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6 pointer-events-none group">
+                            <div>
+                              <h3 className="text-xl font-heading font-bold text-white mb-3">
+                                {project.projectTitle}
+                              </h3>
+                              {project.clientName && (
+                                <p className="text-white/90 text-sm mb-3">Cliente: {project.clientName}</p>
+                              )}
+                              <div className="flex items-center text-white text-xs font-semibold uppercase tracking-wider">
+                                Hacer clic para ver fotos <ArrowRight className="w-3 h-3 ml-2" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="h-80 bg-muted flex items-center justify-center">
+                          <p className="text-foreground/60">Sin imagen</p>
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-secondary/95 via-secondary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <h3 className="text-xl font-heading font-bold text-white mb-3">
+
+                      {/* Project Info */}
+                      <div className="p-6 flex flex-col flex-grow">
+                        <h3 className="text-lg font-heading font-bold text-secondary mb-2">
                           {project.projectTitle}
                         </h3>
-                        {project.clientName && (
-                          <p className="text-white/90 text-sm mb-3">Cliente: {project.clientName}</p>
+                        {project.detailedDescription && (
+                          <p className="text-foreground text-sm line-clamp-2 flex-grow">{project.detailedDescription}</p>
                         )}
-                        <div className="flex items-center text-white text-xs font-semibold uppercase tracking-wider">
-                          Ver Detalles <ArrowRight className="w-3 h-3 ml-2" />
-                        </div>
                       </div>
                     </div>
-                    <div className="p-6 flex flex-col h-[140px]">
-                      <h3 className="text-lg font-heading font-bold text-secondary mb-2">
-                        {project.projectTitle}
-                      </h3>
-                      {project.detailedDescription && (
-                        <p className="text-foreground text-sm line-clamp-2 flex-grow">{project.detailedDescription}</p>
-                      )}
-                    </div>
-                  </div>
-                </AnimatedElement>
-              ))
+                  </AnimatedElement>
+                );
+              })
             ) : (
               <div className="col-span-3 text-center py-20">
                 <p className="text-foreground text-xl font-semibold mb-2">No hay proyectos en esta categoría</p>
