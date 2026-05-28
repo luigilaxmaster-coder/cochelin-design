@@ -195,7 +195,7 @@ export default function HomePage() {
           </FadeIn>
           
           <FadeIn delay={300} direction="up">
-            <h1 className="text-6xl font-bold text-white mb-8 leading-tight tracking-tight font-pinyon-script lg:text-7xl md:text-7xl">Custom made</h1>
+            <h1 className="font-bold mb-8 tracking-tight font-pinyon-script lg:text-7xl md:text-7xl text-7xl text-secondary">Custom made</h1>
           </FadeIn>
           
           <FadeIn delay={500} direction="up">
@@ -286,10 +286,7 @@ export default function HomePage() {
                       return (
                         <FadeIn key={`${project._id}-carousel-${index}`} delay={index * 100} direction="up">
                           {projectImages.length > 0 ? (
-                            <div
-                              onClick={() => navigate(`/portfolio/${project._id}`)}
-                              className="relative group rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:scale-[1.02]"
-                            >
+                            <div className="relative group rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500">
                               <ImageLightbox
                                 images={projectImages}
                                 projectTitle={project.projectTitle || 'Proyecto'}
@@ -303,7 +300,7 @@ export default function HomePage() {
                                   <h3 className="text-white font-heading font-bold text-2xl mb-3">{project.projectTitle}</h3>
                                   <p className="text-white/80 text-sm font-light line-clamp-2">{project.detailedDescription}</p>
                                   <div className="mt-4 flex items-center text-primary text-xs font-semibold uppercase tracking-wider">
-                                    Ver detalles <ArrowRight className="w-3 h-3 ml-2" />
+                                    Hacer clic para ver fotos <ArrowRight className="w-3 h-3 ml-2" />
                                   </div>
                                 </div>
                               </div>
